@@ -1,0 +1,128 @@
+       
+       <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">user_form.user_form_data_source</item>
+            <item name="deps" xsi:type="string">user_form.user_form_data_source</item>
+        </item>
+
+        <item name="label" xsi:type="string" translate="true">User Information</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">user_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="string">FME\Form\Block\Adminhtml\Button\BackButton</item>
+            <item name="save" xsi:type="string">FME\Form\Block\Adminhtml\Button\SaveButton</item>
+        </item>
+        
+    </argument>
+
+    <dataSource name="user_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">FME\Form\Model\DataProvider</argument>
+            <argument name="name" xsi:type="string">user_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">entity_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="customroute/dashboard/save"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+        <field name="gender">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="label" xsi:type="string" translate="true">Gender</item>
+                    <item name="formElement" xsi:type="string">radios</item>
+                    <item name="source" xsi:type="string">user</item>
+                    <item name="dataScope" xsi:type="string">gender</item>
+                    <item name="options" xsi:type="array">
+                        <item name="male" xsi:type="array">
+                            <item name="label" xsi:type="string" translate="true">Male</item>
+                            <item name="value" xsi:type="string">male</item>
+                        </item>
+                        <item name="female" xsi:type="array">
+                            <item name="label" xsi:type="string" translate="true">Female</item>
+                            <item name="value" xsi:type="string">female</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="subjects">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">array</item>
+                    <item name="label" xsi:type="string" translate="true">Subjects</item>
+                    <item name="formElement" xsi:type="string">checkboxes</item>
+                    <item name="source" xsi:type="string">user</item>
+                    <item name="dataScope" xsi:type="string">subjects</item>
+                    <item name="options" xsi:type="array">
+                        <item name="math" xsi:type="array">
+                            <item name="label" xsi:type="string" translate="true">Math</item>
+                            <item name="value" xsi:type="string">math</item>
+                        </item>
+                        <item name="science" xsi:type="array">
+                            <item name="label" xsi:type="string" translate="true">Science</item>
+                            <item name="value" xsi:type="string">science</item>
+                        </item>
+                        <item name="history" xsi:type="array">
+                            <item name="label" xsi:type="string" translate="true">History</item>
+                            <item name="value" xsi:type="string">history</item>
+                        </item>
+                        <item name="cs" xsi:type="array">
+                            <item name="label" xsi:type="string" translate="true">CS</item>
+                            <item name="value" xsi:type="string">cs</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+
+
+        <container name="submit_button_container" sortOrder="100">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Submit Button</item>
+                    <item name="sortOrder" xsi:type="number">100</item>
+                </item>
+            </argument>
+            <button name="submit_button" class="FME\Form\Block\Adminhtml\Button\Save" sortOrder="100">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Submit</item>
+                        <item name="class" xsi:type="string">save primary</item>
+                        <item name="sortOrder" xsi:type="number">100</item>
+                    </item>
+                </argument>
+            </button>
+        </container>
+        
+
+
+
+
+

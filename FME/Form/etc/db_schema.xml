@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <table name="FormData" resource="default" engine="innodb" comment="Form Data">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="int" name="session_id" padding="10" unsigned="true" nullable="false" comment="Session Id"/>
+        <column xsi:type="varchar" name="name" nullable="false" comment="Name"/>
+        <column xsi:type="varchar" name="email" nullable="false" comment="Email"/>
+        <column xsi:type="varchar" name="address" nullable="false" comment="Address"/>
+        <column xsi:type="varchar" name="phone" nullable="false" comment="Phone"/>
+        <column xsi:type="varchar" name="gender" nullable="false" comment="Gender"/>
+        <column xsi:type="varchar" name="subjects"  nullable="false" comment="Subjects"/>
+        <column xsi:type="date" name="birthdate" nullable="false" comment="Birthdate" />
+        <column xsi:type="varchar" name="country"  nullable="false" comment="Country"/>
+        <column xsi:type="varchar" name="profession"  nullable="false" comment="Professions"/>
+        <column xsi:type="datetime" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
+        <column xsi:type="datetime" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Update Time"/>
+
+     <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+
+</schema>

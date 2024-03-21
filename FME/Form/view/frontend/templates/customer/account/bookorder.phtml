@@ -1,0 +1,200 @@
+<?php 
+$data = $block->getUserDetails();
+$countries = $block->getCountries();
+
+
+// dd($data['gender']);
+// dd($countries);
+//dd($data);
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Order</title>
+</head>
+<body>
+
+<form action="<?php echo $block->getUrl('orderbook/customer/save') ?>" method="POST">
+    <fieldset class="fieldset">
+        <hr>
+        <div class="field name required">
+            <label class="label" for="name"><span><?= $block->escapeHtml(__('Name')) ?></span></label>
+            <div class="control">
+                <input name="name"
+                       id="name"
+                       title="<?= $block->escapeHtmlAttr(__('Name')) ?>"
+                       placeholder = "Enter Name Here..."
+                       value = "<?= isset($data['name']) ?  $data['name'] : null ?>"
+                       class = "input-text"
+                       type="text"/>
+            </div>
+        </div>
+        <div class="field email required">
+            <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+            <div class="control">
+                <input name="email"
+                       id="email"
+                       title="<?= $block->escapeHtmlAttr(__('Email')) ?>"
+                       placeholder="Enter Email Here..."
+                       class = "input-text"
+                       type = "text"
+                       value = "<?= isset($data['email']) ?  $data['email'] : null ?>"
+                       data-validate="{'validate-custom-mob-email-rule':true}" required
+                />
+            </div>
+        </div>
+
+        <div class="field address required">
+            <label class="label" for="address"><span><?= $block->escapeHtml(__('Address')) ?></span></label>
+            <div class="control">
+                <input name="address"
+                       id="address"
+                       title="<?= $block->escapeHtmlAttr(__('Address')) ?>"
+                       placeholder="Enter Address Here..."
+                       class="input-text"
+                       type="text"
+                       data-validate="{required:true}"
+                />
+            </div>
+        </div>
+
+        <div class="field telephone">
+            <label class="label" for="telephone"><span><?= $block->escapeHtml(__('Phone Number')) ?></span></label>
+            <div class="control">
+                <input name="phone"
+                       id="phone"
+                       title="<?= $block->escapeHtmlAttr(__('Phone Number')) ?>"
+                       placeholder="Enter Phone Here..."
+                       class="input-text"
+                       type="number" />
+            </div>
+        </div>
+
+        <div class="field birthdate required">
+            <label class="label" for="birthdate"><span><?= $block->escapeHtml(__('Select Your Birthdate:')) ?></span></label>
+            <div class="control">
+                <input name="birthdate"
+                       id="birthdate"
+                       title="<?= $block->escapeHtmlAttr(__('Birthdate')) ?>"
+                       placeholder="Select Your Birthdate..."
+                       class="input-text"
+                       type="date"/>
+            </div>
+        </div>
+
+        <div class="field gender required">
+            <label class="label" for="gender"><span><?= $block->escapeHtml(__('Gender')) ?></span></label>
+            <div class="control">
+                <input name="gender"
+                       id="male"
+                       title="<?= $block->escapeHtmlAttr(__('Male')) ?>"
+                       value="Male"
+                       class="input-text"
+                       type="radio" />
+                       <label class="label" for="gender"><span><?= $block->escapeHtml(__('Male')) ?></span></label>
+                <input name="gender"
+                       id="female"
+                       title="<?= $block->escapeHtmlAttr(__('Female')) ?>"
+                       value="Female"
+                       class="input-text"
+                       type="radio" />
+                       <label class="label" for="gender"><span><?= $block->escapeHtml(__('Female')) ?></span></label>
+            </div>
+        </div>
+
+        <div class="field course">
+            <label class="label" for="course"><span><?= $block->escapeHtml(__('Course Books')) ?></span></label>
+            <div class="control">
+                <input name="courses[]"
+                       id="course1"
+                       title="<?= $block->escapeHtmlAttr(__('Math')) ?>"
+                       value="Math"
+                       class="input-text"
+                       type="checkbox" />
+                       <label class="label" for="course"><span><?= $block->escapeHtml(__('Math')) ?></span></label>
+                       
+                <input name="courses[]"
+                       id="course2"
+                       title="<?= $block->escapeHtmlAttr(__('Science')) ?>"
+                       value="Science"
+                       class="input-text"
+                       type="checkbox" />
+                       <label class="label" for="course"><span><?= $block->escapeHtml(__('Science')) ?></span></label>
+                
+               <input name="courses[]"
+                       id="course3"
+                       title="<?= $block->escapeHtmlAttr(__('History')) ?>"
+                       value="History"
+                       class="input-text"
+                       type="checkbox" />
+                       <label class="label" for="course"><span><?= $block->escapeHtml(__('History')) ?></span></label>
+
+                <input name="courses[]"
+                       id="course4"
+                       title="<?= $block->escapeHtmlAttr(__('CS')) ?>"
+                       value="CS"
+                       class="input-text"
+                       type="checkbox" />
+                       <label class="label" for="course"><span><?= $block->escapeHtml(__('CS')) ?></span></label>
+               
+            </div>
+        </div>
+
+        <div class="field country">
+            <label class="label" for="country"><span><?= $block->escapeHtml(__('Country')) ?></span></label>
+            <div class="control">
+                <select name="country"
+                       id="country"
+                       title="country"
+                       class="input-text"
+                        >
+                        <option value="" disabled class="input-text" selected>Select your country</option>
+                        <?php foreach ($countries as $key => $country) : ?> 
+                            <?php if ($country !== null) : ?>
+                                <option value="<?php echo $country; ?>" class="input-text"><?php echo $country; ?></option>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+
+               </select>
+            </div>
+        </div>
+
+        <div class="field professions">
+            <label class="label" for="professions"><span><?= $block->escapeHtml(__('Select Professions')) ?></span></label>
+            <div class="control">
+                <select name="profession[]"
+                       id="profession"
+                       title="profession"
+                       class="input-text"
+                        multiple >
+                        <option value="" disabled class="input-text" selected>Select Professions</option>
+                        <option value="Frontend Developer" class="input-text">Frontend Developer</option>
+                        <option value="Backend Developer" class="input-text">Backend Developer</option>
+                        <option value="Full Stack Developer" class="input-text">Full Stack Developer</option>
+                        <option value="Tester" class="input-text">Tester</option>
+                        <option value="Support" class="input-text">Support</option>
+               </select>
+            </div>
+        </div>
+
+        <?= $block->getChildHtml('form.additional.info') ?>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <input type="hidden" name="hideit" id="hideit" value="" />
+            <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+                <span><?= $block->escapeHtml(__('Submit')) ?></span>
+            </button>
+        </div>
+    </div>
+
+
+</form>
+
+
+
+</body>
+</html>

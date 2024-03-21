@@ -1,0 +1,52 @@
+<?php 
+$users = $block->getLoggedUsersData();
+$usersrev = array_reverse($users);
+//dd($users);?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Users</title>
+</head>
+<body>
+
+<a href="/orderbook/customer/index"><button class="action submit primary" style="float: right;">Create Book Order</button></a>
+<br>
+
+<table class="data table" id="test-data-table">
+    <caption class="table-caption">Vky Test Data</caption>
+    <thead>
+        <tr>
+           
+            <th scope="col" class="col author">Name</th>
+            <th scope="col" class="col content">Email</th>
+            <th scope="col" class="col created_at">Address</th>
+            <th scope="col" class="col content">Phone</th>
+            <th scope="col" class="col content">Gender</th>
+            <th scope="col" class="col content">DOB</th>
+            <th scope="col" class="col content">Subjects</th>
+            <th scope="col" class="col content">Country</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($usersrev as $key => $user): ?>
+            <tr>
+ 
+                <td data-th="Author" class="col author"><?php echo $user['name']; ?></td>
+                <td data-th="Content" class="col content"><?php echo $user['email']; ?></td>
+                <td data-th="Date" class="col address"><?php echo $user['address']; ?></td>
+                <td data-th="Date" class="col content"><?php echo $user['phone']; ?></td>
+                <td data-th="Content" class="col content"><?php echo $user['gender']; ?></td>
+                <td data-th="Content" class="col content"><?php echo $user['birthdate']; ?></td>
+                <td data-th="Date" class="col content"><?php echo $user['subjects']; ?></td>
+                <td data-th="Date" class="col content"><?php echo $user['country']; ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+
+</body>
+</html>
+
