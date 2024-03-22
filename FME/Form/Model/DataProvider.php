@@ -1,48 +1,37 @@
 <?php
-
 namespace FME\Form\Model;
- 
-use FME\Form\Model\ResourceModel\Extension\Collection;
- 
+
+use FME\Form\Model\ResourceModel\Extension\CollectionFactory;
+
 class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
-    /**
-     * @var array
-     */
-    protected $_loadedData;
     protected $collection;
 
-    /**
-     * @param string $name
-     * @param string $primaryFieldName
-     * @param string $requestFieldName
-     * @param \FME\Form\Model\ResourceModel\Extension\Collection $userCollection
-     */
+    protected $loadedData;
+
     public function __construct(
         $name,
         $primaryFieldName,
         $requestFieldName,
-        Collection $userCollection
+        CollectionFactory $collectionFactory,
+        array $meta = [],
+        array $data = []
     ) {
-        parent::__construct($name, $primaryFieldName, $requestFieldName);
-        $this->collection = $userCollection;
+        $this->collection = $collectionFactory->create();
+        parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
 
-    /**
-     * Get data
-     *
-     * @return array
-     */
     public function getData()
     {
-        return [];
-        // if (isset($this->_loadedData)) {
-        //     return $this->_loadedData;
-        // }
-        // $items = $this->collection->getItems();
-        // foreach ($items as $user) {
-        //     $this->_loadedData[$user->getId()] = $user->getData();
-        // }
-        // return $this->_loadedData;
+        if (isset($this->loadedData)) {
+            return $this->loadedData;
+        }
+        
+        $items = $this->collection->getItems();
+        foreach ($items as $item) {
+            $this->loadedData[$item->getId()] = $item->getData();
+        }
+        
+        return $this->loadedData;
     }
 }

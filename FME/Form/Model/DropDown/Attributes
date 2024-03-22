@@ -1,0 +1,26 @@
+<?php
+
+namespace FME\Form\Model\DropDown;
+
+use Magento\Directory\Model\ResourceModel\Country\CollectionFactory as CountriesFactory;
+
+class Attribute 
+{
+    protected $countryFactory;
+
+    public function __construct(
+        CountriesFactory $countryFactory,
+    ) {
+        $this->countryFactory = $countryFactory;
+    }
+
+    private function getAttributes()
+    {
+        $countries = [];
+
+        foreach ($this->countryCollection->create() as $country) {
+            $countries[$country->getCountryId()] = $country->getName();
+        }
+        return $countries;
+    }
+}

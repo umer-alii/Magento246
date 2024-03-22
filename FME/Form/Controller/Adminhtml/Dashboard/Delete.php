@@ -1,22 +1,42 @@
 <?php 
 namespace FME\Form\Controller\Adminhtml\Dashboard;
 
-class Delete extends \Magento\Ui\Component\Listing\Columns\Column
+use Magento\Framework\App\Action\Context;
+use Magento\Framework\Controller\ResultFactory;
+use FME\Form\Model\ExtensionFactory;
+
+class Delete extends \Magento\Framework\App\Action\Action
 {
-    public function prepareDataSource(array $dataSource)
+    protected $modelFactory;
+
+    public function __construct(
+        Context $context,
+        ExtensionFactory $modelFactory
+    ) {
+        $this->modelFactory = $modelFactory;
+        parent::__construct($context);
+    }
+
+    public function execute()
     {
-        if (isset($dataSource['data']['items'])) {
-            foreach ($dataSource['data']['items'] as &$item) {
-                $item[$this->getData('name')] = [
-                    'href' => $this->getContext()->getUrl('customroute/dashboard/edit', ['id' => $item['entity_id']]),
-                    'label' => __('Delete'),
-                    'confirm' => [
-                        'title' => __('Delete Item'),
-                        'message' => __('Are you sure you want to delete this item?')
-                    ]
-                ];
+        $entityId = $this->getRequest()->getParam('entity_id');
+        
+        try {
+            $entity = $this->modelFactory->create()->load($entityId);
+            
+            if (!$entity->getId()) {
+                throw new \Exception(__('Entity not found.'));
             }
+
+            $entity->delete();
+
+            $this->messageManager->addSuccessMessage(__('Entity deleted successfully.'));
+        } catch (\Exception $e) {
+            $this->messageManager->addErrorMessage($e->getMessage());
         }
-        return $dataSource;
+
+        $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
+        $resultRedirect->setUrl($this->_redirect->getRefererUrl());
+        return $resultRedirect;
     }
 }

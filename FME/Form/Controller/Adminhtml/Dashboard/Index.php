@@ -18,7 +18,7 @@ class Index extends \Magento\Backend\App\Action
 	public function execute()
 	{
 		$resultPage = $this->resultPageFactory->create();
-		$resultPage->getConfig()->getTitle()->prepend((__('Posts')));
+		$resultPage->getConfig()->getTitle()->prepend((__('Manage Users')));
 
 		return $resultPage;
 	}

@@ -7,38 +7,46 @@ use \Magento\Framework\Controller\ResultFactory;
 
 class Save extends \Magento\Backend\App\Action
 {
-    protected $Custommodel;
+    protected $model;
 
     public function __construct(
         Action\Context $context,
         ResultFactory $resultFactory,
-        Model $model,
+        Model $model
     ) {
         parent::__construct($context);
-        $this->Custommodel = $model;
+        $this->model = $model;
         $this->resultFactory = $resultFactory;
     }
 
     public function execute()
     {
-        dd('hi');
-        echo "djhsfb";exit;
             try {
                 $data = $this->getRequest()->getParams();
-                dd($data);
+                //dd($data);
                 if ($data) {
+
+                        // $name = $this->getRequest()->getPost('name');
+                        // $data['name'] = $name;
+
+                        // $email = $this->getRequest()->getPost('email');
+                        // $data['email'] = $email;
 
                         //dd($data['profession']);
                         //unset($data['profession']);
                         //dd($professionNames);
                         //$data['entity_id'] = null;
                         // dd($data);
+
+
+                        //$data['entity_id'] = 59;
                         $model = $this->model->setData($data);
                         //dd($model);
                         $this->model->save(); 
                         $this->messageManager->addSuccessMessage(__("Data Saved Successfully."));      
                 }
             } catch (\Exception $e) {
+                dd($e);
                 $this->messageManager->addNotice(__("Fill the required fields"));
                 $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
                 $resultRedirect->setUrl($this->_redirect->getRefererUrl());
