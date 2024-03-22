@@ -22,28 +22,24 @@ class Save extends \Magento\Backend\App\Action
     public function execute()
     {
             try {
-                $data = $this->getRequest()->getParams();
+                $data = $this->getRequest()->getPostValue();
+               // dd($data);
+                $id = $this->getRequest()->getParam("entity_id");
+                //dd($id);
                 //dd($data);
-                if ($data) {
-
-                        // $name = $this->getRequest()->getPost('name');
-                        // $data['name'] = $name;
-
-                        // $email = $this->getRequest()->getPost('email');
-                        // $data['email'] = $email;
-
-                        //dd($data['profession']);
-                        //unset($data['profession']);
-                        //dd($professionNames);
-                        //$data['entity_id'] = null;
-                        // dd($data);
-
-
-                        //$data['entity_id'] = 59;
+                if (isset($id)&& !empty($id)) {
+                    //dd('hi');
+                        $data['entity_id'] = $id;
+                        //dd($data);
                         $model = $this->model->setData($data);
-                        //dd($model);
                         $this->model->save(); 
-                        $this->messageManager->addSuccessMessage(__("Data Saved Successfully."));      
+                        $this->messageManager->addSuccessMessage(__("Data Edited Successfully."));      
+                }
+                else{
+                    //dd($data);
+                    $model = $this->model->setData($data);
+                    $this->model->save(); 
+                    $this->messageManager->addSuccessMessage(__("Data Added Successfully.")); 
                 }
             } catch (\Exception $e) {
                 dd($e);

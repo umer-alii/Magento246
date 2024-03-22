@@ -44,21 +44,6 @@
             </item>
         </argument>
 
-         <field name="entity_id">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Name</item>
-                    <item name="formElement" xsi:type="string">input</item>
-                    <item name="source" xsi:type="string">user_data_form</item>
-                    <item name="dataScope" xsi:type="string">entity_id</item>
-                </item>
-            </argument>
-            <settings>
-                <visible>false</visible>
-            </settings>
-        </field>
-
         <field name="name">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
