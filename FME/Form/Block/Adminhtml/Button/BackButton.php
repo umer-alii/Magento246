@@ -11,7 +11,7 @@ class BackButton extends GenericButton implements ButtonProviderInterface
     {
         return [
             'label' => __('Back'),
-            'onclick' => 'setLocation(\'' . $this->getUrl('*/*/') . '\')',
+            'onclick' => 'setLocation(\'' . $this->getUrl('customroute/dashboard/index') . '\')',
             'class' => 'back',
             'sort_order' => 10
         ];

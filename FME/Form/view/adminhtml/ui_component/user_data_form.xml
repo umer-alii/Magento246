@@ -92,32 +92,18 @@
             </argument>
         </field>
 
-        <!-- <field name="attribute">
+        <field name="gender">
             <argument name="data" xsi:type="array">
-                <item name="options" xsi:type="object">FME\Form\Model\Dropdown\Attribute</item>
-                <item name="config" xsi:type="array">
-                    <item name="label" xsi:type="string">Attribute</item>
-                    <item name="component" xsi:type="string">Acme_DependentFields/js/form/element/attribute-select</item>
-                    <item name="visible" xsi:type="boolean">true</item>
+                <item name="options" xsi:type="object">FME\Form\Model\Config\Source\Gender</item>
+                <item name="config" xsi:type="array">                    
+                    <item name="sortOrder" xsi:type="number">20</item>
                     <item name="dataType" xsi:type="string">text</item>
-                    <item name="formElement" xsi:type="string">select</item>
-                    <item name="mapper" xsi:type="object">Acme\DependentFields\Model\Example\Mapper</item>
+                    <item name="formElement" xsi:type="string">radioset</item>
+                    <item name="label" xsi:type="string" translate="true">Gender</item>
+                    <item name="source" xsi:type="string">category</item>
                 </item>
             </argument>
         </field>
 
-        <field name="attribute_option">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="label" xsi:type="string">Option</item>
-                    <item name="visible" xsi:type="boolean">true</item>
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="formElement" xsi:type="string">select</item>
-                </item>
-            </argument>
-        </field> -->
-
     </fieldset>
-
-    
 </form>
