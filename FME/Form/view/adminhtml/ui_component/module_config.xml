@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">module_config.module_config_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Module Configuration</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">module_config</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="FME\Form\Block\Adminhtml\Dashboard\SaveButton"/>
+        </buttons>
+    </settings>
+    <dataSource name="module_config_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">FME\Form\Model\DataProvider</argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="update_url" xsi:type="url" path="module/config/update"/>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label></label>
+        </settings>
+        <field name="enable">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">config</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="label" xsi:type="string" translate="true">Enable Module</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset> -->
+</form>

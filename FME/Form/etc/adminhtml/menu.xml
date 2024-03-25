@@ -2,23 +2,16 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
    <menu>
        <add id="FME_Form::custom_menu"
-           title="User Form" translate="title" module="FME_Form"
+           title="Users Data" translate="title" module="FME_Form"
            sortOrder="99"
            resource="FME_Form::menu"
            />
 
-            <add id="FME_Form::submenu_module_registration"
-                title="Module Registration" translate="title" module="FME_Form"
-                sortOrder="20" parent="FME_Form::custom_menu"
-                action="customroute/dashboard/moduleregistration"
-                resource="FME_Form::submenu_module_registration"
-                />
             <add id="FME_Form::submenu_crud"
-                title="Form" translate="title" module="FME_Form"
+                title="Users Data List" translate="title" module="FME_Form"
                 sortOrder="19" parent="FME_Form::custom_menu"
                 action="customroute/dashboard/index"
                 resource="FME_Form::submenu_crud"
                 />
-
    </menu>
 </config>

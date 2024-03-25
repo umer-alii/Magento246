@@ -74,7 +74,7 @@
             </argument>
         </selectionsColumn>
 
-        <column name="entity_id">
+        <column name="entity_id" sortOrder="0">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">textRange</item>
@@ -83,7 +83,7 @@
                 </item>
             </argument>
         </column>
-        <column name="name">
+        <column name="name" sortOrder="1">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
@@ -98,7 +98,7 @@
             </argument>
         </column>
 
-        <column name="email">
+        <column name="email" sortOrder="2">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
@@ -113,7 +113,7 @@
             </argument>
         </column>
 
-        <column name="phone">
+        <column name="phone" sortOrder="3">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
@@ -128,7 +128,22 @@
             </argument>
         </column>
 
-            <actionsColumn name="actions" class="FME\Form\view\adminhtml\UI\Component\Actions">
+        <column name="country" sortOrder="4">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Country</item>
+                </item>
+            </argument>
+        </column>
+
+            <actionsColumn name="actions" class="FME\Form\view\adminhtml\UI\Component\Actions" sortOrder="5"> 
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
                         <item name="resizeEnabled" xsi:type="boolean">false</item>
