@@ -8,7 +8,7 @@ use \Magento\Framework\Controller\ResultFactory;
 class Save extends \Magento\Backend\App\Action
 {
     protected $model;
-
+    private const pending = 'Pending';
     public function __construct(
         Action\Context $context,
         ResultFactory $resultFactory,
@@ -30,6 +30,12 @@ class Save extends \Magento\Backend\App\Action
                 if (isset($id)&& !empty($id)) {
                     //dd('hi');
                         $data['entity_id'] = $id;
+
+                        $data['status'] = 'Pending';
+                        
+                        $professionNames = $this->getRequest()->getParam('profession',[]);     
+                        $data['profession'] = implode(',', $professionNames);
+
                         //dd($data);
                         $model = $this->model->setData($data);
                         $this->model->save(); 

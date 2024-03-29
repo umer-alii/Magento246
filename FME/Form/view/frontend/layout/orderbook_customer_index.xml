@@ -4,7 +4,7 @@
     <body> 
         <referenceBlock name="page.main.title"> 
             <action method="setPageTitle"> 
-                <argument translate="true" name="title" xsi:type="string">Add User Details</argument> 
+                <argument translate="true" name="title" xsi:type="string">Add Details</argument> 
             </action> 
         </referenceBlock> 
         <referenceContainer name="content"> 

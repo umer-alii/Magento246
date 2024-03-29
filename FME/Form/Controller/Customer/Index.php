@@ -29,10 +29,9 @@ class Index extends \Magento\Framework\App\Action\Action
             $resultPage = $this->resultPageFactory->create();
             return $resultPage;
         } else {
-            $this->messageManager->addErrorMessage(__("Your Module in disabled"));
-            $resultRedirect = $this->resultRedirectFactory->create(ResultFactory::TYPE_REDIRECT);
-                $resultRedirect->setPath('/');
-                return $resultRedirect;
+            $resultForward = $this->resultFactory->create(ResultFactory::TYPE_FORWARD);
+            $resultForward->forward('noroute');
+            return $resultForward;
         }
     }
 }

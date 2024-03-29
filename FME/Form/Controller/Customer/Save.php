@@ -7,6 +7,7 @@ use Magento\Framework\App\Action\Action;
 use FME\Form\Model\Extension as Model;
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\Validator\EmailAddress as EmailValidator;
+use Magento\Framework\Event\ManagerInterface as EventManager;
 
 class Save extends Action
 {
@@ -14,31 +15,29 @@ class Save extends Action
     protected $model;
     protected $customerSession;
     protected $emailValidator;
+    protected $eventManager;
+
 
     public function __construct(
         Context $context,
         ResultFactory $resultFactory,
         Model $model,
         CustomerSession $customerSession,
-        EmailValidator $emailValidator
+        EmailValidator $emailValidator,
+        EventManager $eventManager
         )
     {
         $this->resultFactory = $resultFactory;
         $this->model = $model;
         $this->customerSession = $customerSession;
         $this->emailValidator = $emailValidator;
+        $this->eventManager = $eventManager;
         parent::__construct($context);
     }
 
     public function execute()
     {   
-
-        if(!$this->customerSession->isLoggedIn()){
-            $this->messageManager->addErrorMessage(__("Please Login First"));
-        }
-        else{
-            try {
-                
+            try {  
                 $data = $this->getRequest()->getPostValue();
                 if ($data) {
                     $email = $this->getRequest()->getPost('email');
@@ -54,15 +53,24 @@ class Save extends Action
 
                         $data['session_id'] = $this->customerSession->getCustomer()->getId();
                         
-                        //dd($data['profession']);
-                        //unset($data['profession']);
-                        //dd($professionNames);
-                        //$data['entity_id'] = null;
-                        // dd($data);
+                        $data['entity_id'] = $id;
                         
+                        $data['status'] = 'Pending';
+
                         $model = $this->model->setData($data);
-                        //dd($model);
+
+                        // $model->setEmail('umer.ali@unitedsol.net');
+                        $this->eventManager->dispatch(
+                            'adminMail',
+                            ['customer' => $data]
+                        );
+                        $this->eventManager->dispatch(
+                            'userMail',
+                            ['customer' => $data]
+                        );
+
                         $this->model->save(); 
+                        
                         $this->messageManager->addSuccessMessage(__("Data Saved Successfully."));
                     }else{
                         $this->messageManager->addNotice(__("Email not correct!"));
@@ -73,16 +81,23 @@ class Save extends Action
                     
                 }
             } catch (\Exception $e) {
+                dd($e);
                 $this->messageManager->addNotice(__("Fill the required fields"));
                 $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
                 $resultRedirect->setUrl($this->_redirect->getRefererUrl());
                 return $resultRedirect;
             }
-        }
         
-        $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-        $resultRedirect->setUrl($this->_url->getUrl('orderbook/customer/show'));
-        return $resultRedirect;
+        if(!$this->customerSession->isLoggedIn()){
+            $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
+            $resultRedirect->setUrl($this->_url->getUrl());
+            return $resultRedirect;
+        }else{
+            $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
+            $resultRedirect->setUrl($this->_url->getUrl('orderbook/customer/show'));
+            return $resultRedirect;
+        }
+       
 
     }
 }

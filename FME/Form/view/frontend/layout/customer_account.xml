@@ -5,7 +5,7 @@
             <block class="Magento\Framework\View\Element\Html\Link\Current" name="custom-tab-link">
                 <arguments>
                     <argument name="path" xsi:type="string">orderbook/customer/show</argument>
-                    <argument name="label" xsi:type="string">View Book Users</argument>
+                    <argument name="label" xsi:type="string">View Order Details</argument>
                 </arguments>
             </block>
         </referenceBlock>

@@ -1,0 +1,6 @@
+<?php
+$data = $block->userLoggedIn();
+
+if($data): ?>
+    <li><a href="<?= $block->getBaseUrl().'orderbook/customer/guestform'?>"><?= __('Guest Form')?></a></li>
+<?php endif; ?>

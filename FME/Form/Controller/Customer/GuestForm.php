@@ -2,11 +2,10 @@
 
 namespace FME\Form\Controller\Customer;
 
-
 use Magento\Framework\Controller\ResultFactory;
 use FME\Form\Helper\Data;
 
-class Show extends \Magento\Framework\App\Action\Action
+class GuestForm extends \Magento\Framework\App\Action\Action
 {
     private $datahelper;
     protected $resultPageFactory;

@@ -1,24 +1,69 @@
 <?php 
-$data = $block->getUserDetails();
-$countries = $block->getCountries();
-
-// dd($data['gender']);
-// dd($countries);
-//dd($data);
+    $data = $block->getAllUsersData();
+    $countries = $block->getCountries();
+    $currentProductId = $block->getCurrentProductId();
+    $currentProductName = $block->getCurrentProductName();
+    $loggedInUser = $block->getUserDetails();
+    //dd($data);
 ?>
+<?php if (count($data)): ?>
+    <div class="block review-list" id="customer-reviews">
+        <?php if (!$block->getHideTitle()): ?>
+            <div class="block-title">
+                <strong><?= $escaper->escapeHtml(__('Customer Comments')) ?></strong>
+            </div>
+        <?php endif ?>
+        <div class="block-content">
+            <div class="toolbar review-toolbar">
+                <?= $block->getChildHtml('toolbar') ?>
+            </div>
+            <ol class="items review-items">
+                <?php foreach ($data as $_review): ?>
+                    <?php if (isset($_review['product_id']) && ($_review['product_id'] == $currentProductId) && $_review['admin_approval'] == 1): ?>
+                        <li class="item review-item" itemscope itemprop="review" itemtype="http://schema.org/Review">
+                            
+                      
+                            <p class = "comment-details">
+                                <span class="review-comment-label">
+                                    <strong><?= $escaper->escapeHtml(__('Comment :')) ?></strong>
+                                </span>                                                        
+                                <div class="review-content-container">
+                                    <div class="review-content" itemprop="description">
+                                        <?= /* @noEscape */ nl2br($escaper->escapeHtml($_review['comments'])) ?>
+                                    </div>
+                            </p>
+                                    
+                            <div class="review-details">
+                                    <p class="review-author">
+                                        <span class="review-details-label">
+                                        <strong> <?= $escaper->escapeHtml(__('Commented by :')) ?></strong>
+                                        </span>
+                                        <strong class="review-details-value" itemprop="author">
+                                            <?= $escaper->escapeHtml($_review['name']) ?>
+                                        </strong>
+                                    </p>
+                                    <p class="review-date">
+                                        <span class="review-details-label">
+                                            <?= $escaper->escapeHtml(__('Posted on :')) ?>
+                                        </span>
+                                        
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                    <?php endif; ?>  
+                <?php endforeach; ?>
+            </ol>
+            <div class="toolbar review-toolbar">
+                <?= $block->getChildHtml('toolbar') ?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Order</title>
-</head>
-<body>
-
-<form action="<?= $block->getUrl('orderbook/customer/save') ?>" method="POST">
+<form action="<?= $block->getUrl('orderbook/customer/saveproductdetails') ?>" method="POST">
     <fieldset class="fieldset">
-        <hr>
+
         <div class="field name required">
             <label class="label" for="name"><span><?= $block->escapeHtml(__('Name')) ?></span></label>
             <div class="control">
@@ -26,7 +71,7 @@ $countries = $block->getCountries();
                        id="name"
                        title="<?= $block->escapeHtmlAttr(__('Name')) ?>"
                        placeholder = "Enter Name Here..."
-                       value = "<?= isset($data['name']) ?  $data['name'] : null ?>"
+                       value = "<?= isset($loggedInUser['name']) ?  $loggedInUser['name'] : null ?>"
                        class = "input-text"
                        type="text"/>
             </div>
@@ -40,7 +85,7 @@ $countries = $block->getCountries();
                        placeholder="Enter Email Here..."
                        class = "input-text"
                        type = "text"
-                       value = "<?= isset($data['email']) ?  $data['email'] : null ?>"
+                       value = "<?= isset($loggedInUser['email']) ?  $loggedInUser['email'] : null ?>"
                        data-validate="{'validate-custom-mob-email-rule':true}" required
                 />
             </div>
@@ -194,6 +239,20 @@ $countries = $block->getCountries();
             </div>
         </div>
 
+        <div class="field product_id">
+            <div class="control">
+                <input name="product_id"
+                       id="product_id"
+                       title="<?= $block->escapeHtmlAttr(__('product_id')) ?>"
+                       placeholder="Enter Comment Here..."
+                       class="input-text"
+                       value = <?=  $currentProductId ?>
+                       type="hidden"
+                       data-validate="{required:true}"
+                />
+            </div>
+        </div>
+
         <?= $block->getChildHtml('form.additional.info') ?>
     </fieldset>
     <div class="actions-toolbar">
@@ -207,8 +266,3 @@ $countries = $block->getCountries();
 
 
 </form>
-
-
-
-</body>
-</html>

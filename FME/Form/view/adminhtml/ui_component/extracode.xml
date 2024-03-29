@@ -123,6 +123,13 @@
         
 
 
+$sender = [
+                'name' => $customer['name'],
+                'email' => $customer['email'],
+                'address' => $customer['address'],
+                'phone' => $customer['phone'],
+            ];
+
 
 
 

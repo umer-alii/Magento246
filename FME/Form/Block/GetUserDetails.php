@@ -6,6 +6,7 @@ use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 use Magento\Framework\App\Http\Context as HttpContext;
 use Magento\Directory\Model\ResourceModel\Country\CollectionFactory as CountriesFactory; 
+use FME\Form\Model\ResourceModel\Extension\CollectionFactory;
 
 class getUserDetails extends Template
 {
@@ -13,18 +14,31 @@ class getUserDetails extends Template
     protected $customerSession;
     protected $httpContext;
     public $countryCollection;
+    protected $registry;
+    public $collectionObject;
 
     public function __construct(
         CustomerSession $customerSession,
         Context $context,
         HttpContext $httpContext,
         CountriesFactory $countryCollection,
+        \Magento\Framework\Registry $registry,
+        CollectionFactory $collectionObject,
         array $data = []
     ) {
         parent::__construct($context,$data);
         $this->customerSession = $customerSession;
         $this->httpContext = $httpContext;
         $this->countryCollection = $countryCollection;
+        $this->registry = $registry;
+        $this->collectionObject = $collectionObject;
+    }
+
+    public function getAllUsersData() {
+        //dd('hi');
+        $data = $this->collectionObject->create()->getData();
+        // dd($data);
+        return $data;
     }
 
     public function getUserDetails()
@@ -63,4 +77,35 @@ class getUserDetails extends Template
         return $countries;
     }
     
+    public function userLoggedIn(){
+        $isLoggedIn = $this->httpContext->getValue(\Magento\Customer\Model\Context::CONTEXT_AUTH);
+        if($isLoggedIn){
+            return false;
+        }else{
+            return true;
+        }
+        
+    }
+
+    public function getCurrentProduct()
+    {
+        return $this->registry->registry('current_product');
+    }
+
+    public function getCurrentProductId()
+    {
+        $currentProduct = $this->getCurrentProduct();
+        if ($currentProduct) {
+            return $currentProduct->getId();
+        }
+        return null;
+    }
+    public function getCurrentProductName()
+    {
+        $currentProduct = $this->getCurrentProduct();
+        if ($currentProduct) {
+            return $currentProduct->getName();
+        }
+        return null;
+    }
 }

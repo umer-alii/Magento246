@@ -13,6 +13,10 @@
         <column xsi:type="varchar" name="subjects"  nullable="false" comment="Subjects"/>
         <column xsi:type="date" name="birthdate" nullable="false" comment="Birthdate" />
         <column xsi:type="varchar" name="country"  nullable="false" comment="Country"/>
+        <column xsi:type="varchar" name="comments"  nullable="false" comment="Comments"/>
+        <column xsi:type="int" name="product_id"  padding="10" unsigned="true" nullable="true" comment="Product Id"/>
+        <column xsi:type="int" name="admin_approval"  padding="10" unsigned="true" nullable="true" comment="Admin Approval"/>
+        <column xsi:type="varchar" name="status"  nullable="false" comment="Comment Status"/>
         <column xsi:type="varchar" name="profession"  nullable="false" comment="Professions"/>
         <column xsi:type="datetime" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
         <column xsi:type="datetime" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Update Time"/>

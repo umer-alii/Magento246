@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="product.info.details">
+            <block class="FME\Form\Block\GetUserDetails" name="test.tab" template="FME_Form::customer/account/faqs.phtml" group="detailed_info" cacheable="false" >
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">User Comments</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

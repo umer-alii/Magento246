@@ -7,4 +7,18 @@
             </argument>
         </arguments>
     </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments> 
+            <argument name="collections" xsi:type="array">
+                <item name="review_approval_data_source" xsi:type="string">FME\Form\Model\ResourceModel\Extension\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="FME\Form\Helper\SessionInfo">
+        <arguments>
+            <argument name="customerSession" xsi:type="object">Magento\Customer\Model\Session</argument>
+        </arguments>
+    </type>
 </config>

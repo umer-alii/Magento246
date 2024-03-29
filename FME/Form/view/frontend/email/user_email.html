@@ -1,0 +1,18 @@
+<!--@subject {{trans "Contact Form Successfull Submition"}} @-->
+<!--@vars {"store url=\"\"":"Store Url",
+"skin url=\"images/logo_email.gif\" _area='frontend'":"Email Logo Image",
+"var data.comment":"Comment",
+"var data.email":"Sender Email",
+"var data.name":"Sender Name",
+
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p>
+    Dear Sir {{var data.name | escape}} !
+    Your form is submitted successfully!
+</p>
+
+
+{{template config_path="design/email/footer_template"}}

@@ -132,5 +132,151 @@
             </settings>
         </field>
 
+        <field name="birthdate">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Select Your Birthdate:</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/element/date</item>
+                    <item name="dataType" xsi:type="string">date</item>
+                    <item name="dataScope" xsi:type="string">birthdate</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="professions" formElement="multiselect">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">professions</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>number</dataType>
+                <label translate="true">Profession</label>
+                <dataScope>professions</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="FME\Form\Model\Config\Source\Profession"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+
+        <field name="comments">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Comments</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/textarea</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="dataScope" xsi:type="string">comments</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+
+        <!-- <field name="courses">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">FME\Form\Model\Config\Source\Courses</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Course Books</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/element/checkbox-set</item>
+                    <item name="formElement" xsi:type="string">checkboxSet</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/checkbox-set</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="source" xsi:type="string">user_data_form</item>
+                    <item name="dataScope" xsi:type="string">courses</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                </item>
+            </argument>
+        </field> -->
+
+        <!-- <field name="courses" >
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Your\Module\Model\Config\Source\Courses</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Course Books</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/element/checkbox-set</item>
+                    <item name="formElement" xsi:type="string">checkboxSet</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/checkbox-set</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="source" xsi:type="string">user_form_data</item>
+                    <item name="dataScope" xsi:type="string">courses</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                </item>
+            </argument>
+        </field> -->
+
+        <!-- <field name="courses" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">professions</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Course Books</label>
+                <dataScope>courses</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="FME\Form\Model\Config\Source\Courses"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field> -->
+
+        <!-- <field name="courses" class="FME\Form\view\adminhtml\UI\Component\Courses">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Courses</item>
+                </item>
+            </argument>
+        </field> -->
+
+        
+
+
+        <!-- <field name="courses" formElement="checkbox">
+    <argument name="data" xsi:type="array">
+        <item name="options" xsi:type="object">FME\Form\Model\Config\Source\Courses</item>
+        <item name="config" xsi:type="array">
+            <item name="label" xsi:type="string" translate="true">Course Books</item>
+            <item name="component" xsi:type="string">Magento_Ui/js/form/element/checkbox-set</item>
+            <item name="elementTmpl" xsi:type="string">ui/form/element/checkbox-set</item>
+            <item name="dataType" xsi:type="string">text</item>
+            <item name="source" xsi:type="string">user_data_form</item>
+            <item name="dataScope" xsi:type="string">courses</item>
+            <item name="sortOrder" xsi:type="number">30</item>
+        </item>
+    </argument>
+    <settings>
+        <validation>
+            <rule name="required-entry" xsi:type="boolean">true</rule>
+        </validation>
+        <dataType>text</dataType>
+        <label translate="true">Course Books</label>
+        <dataScope>courses</dataScope>
+    </settings>
+</field> -->
+
+
+
+            
+
     </fieldset>
 </form>

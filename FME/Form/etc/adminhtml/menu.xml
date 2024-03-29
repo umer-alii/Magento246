@@ -2,7 +2,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
    <menu>
        <add id="FME_Form::custom_menu"
-           title="Users Data" translate="title" module="FME_Form"
+           title="FME" translate="title" module="FME_Form"
            sortOrder="99"
            resource="FME_Form::menu"
            />
@@ -12,6 +12,13 @@
                 sortOrder="19" parent="FME_Form::custom_menu"
                 action="customroute/dashboard/index"
                 resource="FME_Form::submenu_crud"
+                />
+
+            <add id="FME_Form::submenu_commentApproval"
+                title="Comment Approval" translate="title" module="FME_Form"
+                sortOrder="20" parent="FME_Form::custom_menu"
+                action="customroute/dashboard/reviewApproval"
+                resource="FME_Form::submenu_commentApproval"
                 />
    </menu>
 </config>

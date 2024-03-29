@@ -1,7 +1,10 @@
 <?php 
 $users = $block->getLoggedUsersData();
+//dd($users);
 $usersrev = array_reverse($users);
-//dd($users);?>
+
+$productColl = $block->getProductCollection();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,12 +17,12 @@ $usersrev = array_reverse($users);
 
 <a href="/orderbook/customer/index"><button class="action submit primary" style="float: right;">Create Book Order</button></a>
 <br>
+<?php if ($productColl && count($productColl->getData()) > 0): ?>
 
 <table class="data table" id="test-data-table">
     <caption class="table-caption">Vky Test Data</caption>
     <thead>
-        <tr>
-           
+        <tr>  
             <th scope="col" class="col author">Name</th>
             <th scope="col" class="col content">Email</th>
             <th scope="col" class="col created_at">Address</th>
@@ -31,7 +34,7 @@ $usersrev = array_reverse($users);
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($usersrev as $key => $user): ?>
+        <?php foreach ($productColl as $key => $user): ?>
             <tr>
  
                 <td data-th="Author" class="col author"><?php echo $user['name']; ?></td>
@@ -46,6 +49,12 @@ $usersrev = array_reverse($users);
         <?php endforeach; ?>
     </tbody>
 </table>
+<?php endif; ?>
+
+<?php if ($block->getPagerHtml()): ?>
+    <div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+<?php endif ?>
+
 
 </body>
 </html>
