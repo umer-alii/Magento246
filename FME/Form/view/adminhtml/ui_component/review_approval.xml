@@ -5,18 +5,68 @@
             <item name="deps" xsi:type="string">review_approval.review_approval_data_source</item>
         </item>
         <item name="spinner" xsi:type="string">spinner_columns</item>
-        <!-- <item name="buttons" xsi:type="array">
+        <item name="buttons" xsi:type="array">
             <item name="add" xsi:type="array">
-                <item name="name" xsi:type="string">add</item>
-                <item name="label" xsi:type="string" translate="true">Approve Comment</item>
-                <item name="class" xsi:type="string">primary</item>
-                <item name="url" xsi:type="string">*/*/createform</item>
+                <item name="name" xsi:type="string">back</item>
+                <item name="label" xsi:type="string" translate="true">Back</item>
+                <item name="class" xsi:type="string">secondary</item>
+                <item name="url" xsi:type="string">admin/dashboard/index</item>
             </item>
-        </item> -->
+        </item>
     </argument>
 
     <listingToolbar name="listing_top">
         <paging name="listing_paging"/>
+        <massaction name="listing_massaction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">review_approval.review_approval.spinner_columns.ids</item>
+                    <item name="indexField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+            <action name="delete">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">delete</item>
+                        <item name="label" xsi:type="string" translate="true">Delete</item>
+                        <item name="url" xsi:type="url" path="customroute/dashboard/massDelete"/>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Delete records</item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete selected records?</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+
+            <action name="approve">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">approve</item>
+                        <item name="label" xsi:type="string" translate="true">Approve</item>
+                        <item name="url" xsi:type="url" path="customroute/dashboard/massApproval"/>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Approve records</item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure you wan't to approve selected records?</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+
+            <action name="refuse">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">Refuse</item>
+                        <item name="label" xsi:type="string" translate="true">Refuse</item>
+                        <item name="url" xsi:type="url" path="customroute/dashboard/massRefusal"/>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Refuse records</item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure you wan't to refuse selected records?</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+        </massaction>
+
         <bookmark name="bookmarks"/>
         <columnsControls name="columns_controls"/>
         <filterSearch name="fulltext"/>
@@ -40,24 +90,6 @@
             </argument>
         </argument>
     </dataSource>
-
-    <!-- <filters name="listing_filters">
-        <argument name="data" xsi:type="array">
-            <item name="config" xsi:type="array">
-                <item name="params" xsi:type="array">
-                    <item name="filters_modifier" xsi:type="array"/>
-                </item>
-            </item>
-        </argument>
-        <filterInput name="product_id">
-            <settings>
-                <dataType>text</dataType>
-                <label translate="true">Product ID</label>
-                <dataScope>product_id</dataScope>
-            </settings>
-        </filterInput>
-    </filters> -->
-
     <columns name="spinner_columns">
 
         <selectionsColumn name="ids">
@@ -134,7 +166,7 @@
                             <item name="required-entry" xsi:type="boolean">true</item>
                         </item>
                     </item>
-                    <item name="label" xsi:type="string" translate="true">Status</item>
+                    <item name="label" xsi:type="string" translate="true">Comment Status</item>
                 </item>
             </argument>
         </column>

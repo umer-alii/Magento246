@@ -12,11 +12,12 @@ class Courses implements OptionSourceInterface
      */
     public function toOptionArray()
     {
+        // Return an array of course options
         return [
-            ['value' => 'Math', 'label' => __('Math')],
-            ['value' => 'Science', 'label' => __('Science')],
-            ['value' => 'History', 'label' => __('History')],
-            ['value' => 'CS', 'label' => __('CS')],
+            ['value' => 'Math', 'label' => __('Math')],       
+            ['value' => 'Science', 'label' => __('Science')], 
+            ['value' => 'History', 'label' => __('History')], 
+            ['value' => 'CS', 'label' => __('CS')],           
         ];
     }
 }

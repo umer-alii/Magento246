@@ -4,15 +4,23 @@ namespace FME\Form\Controller\Adminhtml\Dashboard;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
-//use FME\Form\Model\ExtensionFactory; 
-//use FME\Form\Model\Extension; 
 
-
+/**
+ * Controller class for editing or adding a user in the admin dashboard
+ */
 class Edit extends Action
 {
-    protected $entity_id = null;
+    /**
+     * @var PageFactory
+     */
     protected $resultPageFactory;
 
+    /**
+     * Constructor
+     *
+     * @param Context $context
+     * @param PageFactory $resultPageFactory
+     */
     public function __construct(
         Context $context,
         PageFactory $resultPageFactory
@@ -21,24 +29,33 @@ class Edit extends Action
         $this->resultPageFactory = $resultPageFactory;
     }
 
+    /**
+     * Execute action to render edit/add user page
+     *
+     * @return \Magento\Framework\View\Result\Page
+     */
     public function execute()
     {
-        $entity_id = $this->getRequest()->getParam('entity_id');
+        $entityId = $this->getRequest()->getParam('entity_id');
 
         $resultPage = $this->resultPageFactory->create();
        
-        if($entity_id){
+        if ($entityId) {
             $resultPage->getConfig()->getTitle()->prepend(__('Edit User'));
-        }else{
+        } else {
             $resultPage->getConfig()->getTitle()->prepend(__('Add User'));
         }
         
         return $resultPage;
     }
 
+    /**
+     * Check if action is allowed
+     *
+     * @return bool
+     */
     protected function _isAllowed()
     {
         return $this->_authorization->isAllowed('FME_Form::edit');
     }
 }
-

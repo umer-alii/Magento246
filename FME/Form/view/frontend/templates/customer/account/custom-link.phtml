@@ -1,6 +1,7 @@
 <?php
 $data = $block->userLoggedIn();
+$label = $block->getGuestFormLabel();
 
 if($data): ?>
-    <li><a href="<?= $block->getBaseUrl().'orderbook/customer/guestform'?>"><?= __('Guest Form')?></a></li>
+    <li><a href="<?= $block->getBaseUrl().'orderbook/customer/guestform'?>"><?= __($label) ?></a></li>
 <?php endif; ?>

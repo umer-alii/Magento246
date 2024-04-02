@@ -5,11 +5,11 @@ use Magento\Framework\Data\OptionSourceInterface;
  
 class Profession implements OptionSourceInterface
 {
-    public $professions;
-
+    /**
+     * @return array
+     */
     public function toOptionArray()
     {
-        
         return [
             ['value' => 'Frontend Developer', 'label' => __('Frontend Developer')],
             ['value' => 'Backend Developer', 'label' => __('Backend Developer')],

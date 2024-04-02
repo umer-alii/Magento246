@@ -1,15 +1,31 @@
 <?php
-namespace FME\Form\view\adminhtml\UI;
+/**
+ * Class ProductDataProvider
+ *
+ * @package FME\Form\Model
+ */
+namespace FME\Form\Model;
 
 use FME\Form\Model\ResourceModel\Extension\Grid\CollectionFactory;
 
-class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
+/**
+ * Class ProductDataProvider
+ * @package FME\Form\Model
+ */
+class ProductDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
+    /**
+     * @var \FME\Form\Model\ResourceModel\Extension\Grid\Collection
+     */
     protected $collection;
+
+    /**
+     * @var array|null
+     */
     protected $loadedData;
 
     /**
-     * DataProvider constructor.
+     * ProductDataProvider constructor.
      *
      * @param string $name
      * @param string $primaryFieldName
@@ -38,6 +54,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
     public function getData()
     {
         $items = $this->getCollection()->addFieldToFilter('product_id', ['notnull' => true])->toArray();
+
         return $items;
     }
 }

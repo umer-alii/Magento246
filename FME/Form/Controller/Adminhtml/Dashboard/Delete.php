@@ -5,10 +5,22 @@ use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
 use FME\Form\Model\ExtensionFactory;
 
+/**
+ * Controller class for deleting an entity in the admin dashboard
+ */
 class Delete extends \Magento\Framework\App\Action\Action
 {
+    /**
+     * @var ExtensionFactory
+     */
     protected $modelFactory;
 
+    /**
+     * Constructor
+     *
+     * @param Context $context
+     * @param ExtensionFactory $modelFactory
+     */
     public function __construct(
         Context $context,
         ExtensionFactory $modelFactory
@@ -17,6 +29,11 @@ class Delete extends \Magento\Framework\App\Action\Action
         parent::__construct($context);
     }
 
+    /**
+     * Execute action to delete an entity
+     *
+     * @return \Magento\Framework\Controller\Result\Redirect
+     */
     public function execute()
     {
         $entityId = $this->getRequest()->getParam('entity_id');

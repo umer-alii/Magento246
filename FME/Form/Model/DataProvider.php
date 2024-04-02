@@ -1,14 +1,39 @@
 <?php
+/**
+ * Class DataProvider
+ *
+ * @package FME\Form\Model
+ */
 namespace FME\Form\Model;
 
 use FME\Form\Model\ResourceModel\Extension\CollectionFactory;
 
+/**
+ * Class DataProvider
+ * @package FME\Form\Model
+ */
 class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
+    /**
+     * @var \FME\Form\Model\ResourceModel\Extension\Collection
+     */
     protected $collection;
 
+    /**
+     * @var array|null
+     */
     protected $loadedData;
 
+    /**
+     * DataProvider constructor.
+     *
+     * @param string $name
+     * @param string $primaryFieldName
+     * @param string $requestFieldName
+     * @param CollectionFactory $collectionFactory
+     * @param array $meta
+     * @param array $data
+     */
     public function __construct(
         $name,
         $primaryFieldName,
@@ -21,6 +46,11 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
 
+    /**
+     * Get data
+     *
+     * @return array|null
+     */
     public function getData()
     {
         if (isset($this->loadedData)) {

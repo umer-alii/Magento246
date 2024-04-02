@@ -7,7 +7,7 @@ use Magento\Framework\Controller\ResultFactory;
 use Magento\Review\Model\Review;
 
 /**
- * Class Post
+ * Helper class for handling comment approval
  */
 class CommentApproval extends ProductController implements HttpPostActionInterface
 {
@@ -18,18 +18,27 @@ class CommentApproval extends ProductController implements HttpPostActionInterfa
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      * @SuppressWarnings(PHPMD.NPathComplexity)
      */
+    public function execute()
+    {
+        // This method is intentionally left blank as it's not required for this helper
+    }
 
-    public function execute() {}
+    /**
+     * Submit customer review
+     *
+     * @param array $data Review data
+     * @return void
+     */
     public function sendCustomerReview($data)
     {
-        $rating = isset($data['comment']) ? $data['comment'] :'';
-        // dd($rating);
+        $rating = isset($data['comment']) ? $data['comment'] : '';
 
         if (($product = $this->initProduct()) && !empty($data)) {
             $review = $this->reviewFactory->create()->setData($data);
             $review->unsetData('review_id');
 
             $validate = $review->validate();
+
             if ($validate === true) {
                 try {
                     $review->setEntityId($review->getEntityIdByCode(Review::ENTITY_PRODUCT_CODE))
@@ -39,14 +48,11 @@ class CommentApproval extends ProductController implements HttpPostActionInterfa
                         ->setStoreId($this->storeManager->getStore()->getId())
                         ->setStores([$this->storeManager->getStore()->getId()])
                         ->save();
-
-                    } catch (\Exception $e) {
+                } catch (\Exception $e) {
                     $this->reviewSession->setFormData($data);
                     $this->messageManager->addErrorMessage(__('We can\'t post your review right now.'));
                 }
-            } 
+            }
         }
-
     }
-
 }

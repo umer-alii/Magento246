@@ -1,34 +1,48 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
-     <system>
-        <tab id="moduleConfig" translate="label" sortOrder="200">
-           <label>Module Configuration</label>
-        </tab>
-        <section id="moduleConfig" translate="label" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
-           <class>separator-top</class>
-           <label>Form Module</label>
-           <tab>moduleConfig</tab>
-           <resource>FME_Form::configuration</resource>
-           <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
-                <label>Configuration</label>
-                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
-                     <label>Enable Module</label>
-                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                </field>
-          </group>
-       </section>
+      <system>
+         <tab id="fmeextensions" translate="label" sortOrder="200"><label>FME Extensions</label></tab>
 
-       <section id="header_links" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-            <label>Header Links</label>
-            <tab>general</tab>
-            <resource>FME_Form::config_header_links</resource>
-            <group id="settings" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Settings</label>
-                <field id="is_custom_header_link_enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Enable Custom Header Link</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                </field>
+         <section id="configuration" translate="label" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Enable/Disable Module</label>
+            <tab>fmeextensions</tab>
+            <resource>FME_Form::configuration</resource>
+
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                  <label>Configuration</label>
+                  <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Enable Module</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                  </field>
             </group>
-        </section>
-     </system>
+         </section>
+
+
+         <section id="labelConfiguration" translate="label" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Set Labels</label>
+            <tab>fmeextensions</tab>
+            <resource>FME_Form::labelConfiguration</resource>
+
+            <group id="Label" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="0" showInStore="0">
+                  <label>Label</label>
+
+                  <field id="commentLabel" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                     <label>Set Comment Label</label>
+                     <comment>This text will display on the frontend comment title.</comment>
+                  </field>
+  
+                  <field id="guestFormLabel" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                     <label>Set Guest Form Label</label>
+                     <comment>This text will display on the frontend guest form link title.</comment>
+                  </field>
+
+                  <field id="userFormLabel" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                     <label>Set User Form Label</label>
+                     <comment>This text will display on the frontend user account form link title.</comment>
+                  </field>
+            </group>
+         </section>
+      </system>
 </config>

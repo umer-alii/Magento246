@@ -23,26 +23,20 @@ class Save extends \Magento\Backend\App\Action
     {
             try {
                 $data = $this->getRequest()->getPostValue();
-                //dd($data);
-                $id = $this->getRequest()->getParam("entity_id");
-                //dd($id);
-                //dd($data);
-                if (isset($id)&& !empty($id)) {
-                    //dd('hi');
-                        $data['entity_id'] = $id;
-
-                        $data['status'] = 'Pending';
-                        
-                        $professionNames = $this->getRequest()->getParam('profession',[]);     
-                        $data['profession'] = implode(',', $professionNames);
-
-                        //dd($data);
-                        $model = $this->model->setData($data);
-                        $this->model->save(); 
-                        $this->messageManager->addSuccessMessage(__("Data Edited Successfully."));      
+                $id = $this->getRequest()->getParam("product_id");
+                if (isset($id) && !empty($id)) {
+                    $data['status'] = 'Pending';
+                    
+                    $professionNames = $this->getRequest()->getParam('profession',[]);     
+                    $data['profession'] = implode(',', $professionNames);
+                    $model = $this->model->setData($data);
+                    $this->model->save(); 
+                    $this->messageManager->addSuccessMessage(__("Data Edited Successfully."));      
                 }
                 else{
-                    //dd($data);
+                    $professionNames = $this->getRequest()->getParam('profession',[]);     
+                    $data['profession'] = implode(',', $professionNames);
+                    
                     $model = $this->model->setData($data);
                     $this->model->save(); 
                     $this->messageManager->addSuccessMessage(__("Data Added Successfully.")); 

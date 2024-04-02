@@ -4,15 +4,22 @@
         <arguments>
             <argument name="collections" xsi:type="array">
                 <item name="user_list_data_source" xsi:type="string">FME\Form\Model\ResourceModel\Extension\Grid\Collection</item>
+                <item name="review_approval_data_source" xsi:type="string">FME\Form\Model\ResourceModel\Extension\Grid\Collection</item>
             </argument>
         </arguments>
     </type>
 
-    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
-        <arguments> 
-            <argument name="collections" xsi:type="array">
-                <item name="review_approval_data_source" xsi:type="string">FME\Form\Model\ResourceModel\Extension\Grid\Collection</item>
-            </argument>
+     <type name="FME\Form\Model\ResourceModel\Extension\Grid\Collection">
+        <arguments>
+            <argument name="fme_form_data" xsi:type="string">fme_form_data</argument>
+            <argument name="resourceModel" xsi:type="string">FME\Form\Model\ResourceModel\Extension</argument>
+        </arguments>
+    </type>
+
+    <type name="FME\Form\Model\ResourceModel\Extension\Grid\Collection">
+        <arguments>
+            <argument name="fme_form_data" xsi:type="string">fme_form_data</argument>
+            <argument name="resourceModel" xsi:type="string">FME\Form\Model\ResourceModel\Extension</argument>
         </arguments>
     </type>
 

@@ -31,8 +31,8 @@
                         <item name="label" xsi:type="string" translate="true">Delete</item>
                         <item name="url" xsi:type="url" path="customroute/dashboard/massDelete"/>
                         <item name="confirm" xsi:type="array">
-                            <item name="title" xsi:type="string" translate="true">Delete items</item>
-                            <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete selected items?</item>
+                            <item name="title" xsi:type="string" translate="true">Delete Records</item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete selected records?</item>
                         </item>
                     </item>
                 </argument>
@@ -46,7 +46,7 @@
 
     <dataSource name="user_list_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
-            <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
+            <argument name="class" xsi:type="string">FME\Form\view\adminhtml\UI\UserDataProvider</argument>
             <argument name="name" xsi:type="string">user_list_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
             <argument name="requestFieldName" xsi:type="string">entity_id</argument>

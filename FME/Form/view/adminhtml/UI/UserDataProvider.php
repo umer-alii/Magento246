@@ -3,7 +3,7 @@ namespace FME\Form\view\adminhtml\UI;
 
 use FME\Form\Model\ResourceModel\Extension\Grid\CollectionFactory;
 
-class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
+class UserDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
     protected $collection;
     protected $loadedData;
@@ -37,7 +37,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
      */
     public function getData()
     {
-        $items = $this->getCollection()->addFieldToFilter('product_id', ['notnull' => true])->toArray();
+        $items = $this->getCollection()->addFieldToFilter('product_id', ['null' => true])->toArray();
         return $items;
     }
 }

@@ -1,24 +1,50 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
    <menu>
-       <add id="FME_Form::custom_menu"
-           title="FME" translate="title" module="FME_Form"
-           sortOrder="99"
-           resource="FME_Form::menu"
-           />
+        <update id="FME_Extensions::fmeextensions"
+            title="FME Extensions" translate="title" 
+            module="FME_Form" sortOrder="30"
+            resource="FME_Extensions::fmeextensions"/>
+
+        <add id="FME_Form::formgrid"
+            title="FME Form Actions" translate="title" 
+            module="FME_Form" sortOrder="1"
+            parent="FME_Extensions::fmeextensions"
+            resource="FME_Form::formgrid"/>
 
             <add id="FME_Form::submenu_crud"
-                title="Users Data List" translate="title" module="FME_Form"
-                sortOrder="19" parent="FME_Form::custom_menu"
+                title="Manage User Data" translate="title" module="FME_Form"
+                sortOrder="19" parent="FME_Form::formgrid"
                 action="customroute/dashboard/index"
                 resource="FME_Form::submenu_crud"
                 />
 
             <add id="FME_Form::submenu_commentApproval"
-                title="Comment Approval" translate="title" module="FME_Form"
-                sortOrder="20" parent="FME_Form::custom_menu"
+                title="Manage Comment" translate="title" module="FME_Form"
+                sortOrder="20" parent="FME_Form::formgrid"
                 action="customroute/dashboard/reviewApproval"
                 resource="FME_Form::submenu_commentApproval"
                 />
+
+        <add id="FME_Form::configuration"
+            title="Configuration" translate="title" 
+            module="FME_Form" sortOrder="2"
+            parent="FME_Extensions::fmeextensions"
+            resource="FME_XYZ::base"/>
+
+            <add id="FME_Form::submenu_module_onof"
+                title="Enable/Disable Module" translate="title" module="FME_Form"
+                sortOrder="20" parent="FME_Form::configuration"
+                action="admin/system_config/edit/section/configuration/"
+                resource="FME_Form::submenu_module_onof"
+                />
+
+            <add id="FME_Form::submenu_module_labelConfiguration"
+                title="Set Labels" translate="title" module="FME_Form"
+                sortOrder="20" parent="FME_Form::configuration"
+                action="admin/system_config/edit/section/labelConfiguration/"
+                resource="FME_Form::submenu_module_labelConfiguration"
+                />
+
    </menu>
 </config>

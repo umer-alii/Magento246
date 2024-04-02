@@ -46,11 +46,10 @@ class Approvals extends Column
      */
     public function prepareDataSource(array $dataSource)
     {
-        //echo "hi";exit;
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as &$item) {
 
-                if (isset($item['entity_id'])) {
+                if (isset($item['entity_id'])) {                    //&& $item['status'] != 'Refused'
                     if (isset($item['entity_id'])) {
                         $item[$this->getData('name')] = [
                             'approve' => [

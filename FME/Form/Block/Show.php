@@ -6,11 +6,23 @@ use Magento\Framework\View\Element\Template\Context;
 use FME\Form\Model\ResourceModel\Extension\CollectionFactory;
 use Magento\Customer\Model\Session as CustomerSession;
 
+/**
+ * Class Show
+ * Block to show user data
+ */
 class Show extends Template
 {
     private $collectionobject;
     private $customerSession;
 
+    /**
+     * Constructor
+     *
+     * @param Context $context
+     * @param CollectionFactory $collectionobject
+     * @param CustomerSession $customerSession
+     * @param array $data
+     */
     public function __construct(
         Context $context,
         CollectionFactory $collectionobject,
@@ -23,21 +35,25 @@ class Show extends Template
         $this->customerSession = $customerSession;
     }
 
+    /**
+     * Get all users' data
+     *
+     * @return array
+     */
     public function getAllUsersData() {
-        //dd('hi');
         $data = $this->collectionobject->create()->getData();
-        // dd($data);
         return $data;
     }
 
+    /**
+     * Get logged in users' data
+     *
+     * @return array
+     */
     public function getLoggedUsersData() {
         $allUserData = $this->collectionobject->create()->getData();
         $loggedInCustomerId = $this->customerSession->getCustomer()->getId();
-        $loggedInCustomerUsername = $this->customerSession->getCustomer()->getUsername();
 
-        //dd($loggedInCustomerId);
-        //var_dump($this->customerSession->getCustomer()->getId());
-        //dd($allUserData);
         $filteredUserData = [];
         foreach ($allUserData as $userData) {
             if ($userData['session_id'] == $loggedInCustomerId) {
@@ -48,6 +64,9 @@ class Show extends Template
         return $filteredUserData;
     }
 
+    /**
+     * Prepare layout
+     */
     protected function _prepareLayout(){
         parent::_prepareLayout();
         $this->pageConfig->getTitle()->set(__('My Pagination'));
@@ -65,10 +84,20 @@ class Show extends Template
         return $this;
     }
 
+    /**
+     * Get pager HTML
+     *
+     * @return string
+     */
     public function getPagerHtml(){
         return $this->getChildHtml('pager');
     }
 
+    /**
+     * Get product collection
+     *
+     * @return mixed
+     */
     public function getProductCollection(){
         $page = ($this->getRequest()->getParam('p')) ? $this->getRequest()->getParam('p') : 1;
         $pageSize = ($this->getRequest()->getParam('limit')) ? $this->getRequest()->getParam('limit') : 5;
@@ -78,5 +107,4 @@ class Show extends Template
         $collection->setCurPage($page);
         return $collection;    
     }
-
 }
