@@ -2,9 +2,9 @@
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">user_data_form.user_data_form_data_source</item>
+            <item name="provider" xsi:type="string">comment_data_form.comment_data_form_data_source</item>
         </item>
-        <item name="label" xsi:type="string" translate="true"> User Form </item>
+        <item name="label" xsi:type="string" translate="true"> Edit Comment Details </item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
 
     </argument>
@@ -13,13 +13,13 @@
             <button name="save" class="FME\Form\Block\Adminhtml\Button\SaveButton"/>
             <button name="back" class="FME\Form\Block\Adminhtml\Button\BackButton"/>
         </buttons>
-        <namespace>user_data_form</namespace>
+        <namespace>comment_data_form</namespace>
         <dataScope>data</dataScope>
         <deps>
-            <dep>user_data_form.user_data_form_data_source</dep>
+            <dep>comment_data_form.comment_data_form_data_source</dep>
         </deps>
     </settings>
-    <dataSource name="user_data_form_data_source">
+    <dataSource name="comment_data_form_data_source">
         <argument name="data" xsi:type="array">
             <item name="js_config" xsi:type="array">
                 <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
@@ -28,7 +28,7 @@
         <settings>
             <submitUrl path="customroute/dashboard/save"/>
         </settings>
-        <dataProvider class="FME\Form\Model\DataProvider" name="user_data_form_data_source">
+        <dataProvider class="FME\Form\Model\DataProvider" name="comment_data_form_data_source">
         <settings>
             <requestFieldName>entity_id</requestFieldName>
             <primaryFieldName>entity_id</primaryFieldName>
@@ -36,13 +36,81 @@
     </dataProvider>
 </dataSource>
 
-    <fieldset name="user_data_form">
+    <fieldset name="comment_data_form">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
-                <item name="label" xsi:type="string" translate="true">Insert User Details</item>
+                <item name="label" xsi:type="string" translate="true">Edit Comment Details</item>
                 <item name="sortOrder" xsi:type="number">20</item>
             </item>
         </argument>
+
+        <field name="product_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Product id</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">comment_data_form</item>
+                    <item name="dataScope" xsi:type="string">product_id</item>
+                    <item name="disabled" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="product_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Product Name</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">comment_data_form</item>
+                    <item name="dataScope" xsi:type="string">product_name</item>
+                    <item name="disabled" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="product_sku">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Product Sku</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">comment_data_form</item>
+                    <item name="dataScope" xsi:type="string">product_sku</item>
+                    <item name="disabled" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+         <field name="status" formElement="select" >
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">FME\Form\Model\Config\Source\ReviewStatus</item>
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string">Review Status</item>
+                        <item name="visible" xsi:type="boolean">true</item>
+                        <item name="dataType" xsi:type="string">select</item>
+                        <item name="filter" xsi:type="string">select</item>
+                        <item name="formElement" xsi:type="string">select</item>
+                        <item name="source" xsi:type="string">contact</item>
+                    </item>
+                </argument>
+            </field>
 
         <field name="name">
             <argument name="data" xsi:type="array">
@@ -50,7 +118,7 @@
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="label" xsi:type="string" translate="true">Name</item>
                     <item name="formElement" xsi:type="string">input</item>
-                    <item name="source" xsi:type="string">user_data_form</item>
+                    <item name="source" xsi:type="string">comment_data_form</item>
                     <item name="dataScope" xsi:type="string">name</item>
                 </item>
             </argument>
@@ -67,7 +135,7 @@
                     <item name="dataType" xsi:type="string">email</item>
                     <item name="label" xsi:type="string" translate="true">Email</item>
                     <item name="formElement" xsi:type="string">input</item>
-                    <item name="source" xsi:type="string">user_data_form</item>
+                    <item name="source" xsi:type="string">comment_data_form</item>
                     <item name="dataScope" xsi:type="string">email</item>
                 </item>
             </argument>
@@ -84,7 +152,7 @@
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="label" xsi:type="string" translate="true">Address</item>
                     <item name="formElement" xsi:type="string">input</item>
-                    <item name="source" xsi:type="string">user_data_form</item>
+                    <item name="source" xsi:type="string">comment_data_form</item>
                     <item name="dataScope" xsi:type="string">address</item>
                 </item>
             </argument>
@@ -96,7 +164,7 @@
                     <item name="dataType" xsi:type="string">number</item>
                     <item name="label" xsi:type="string" translate="true">Phone</item>
                     <item name="formElement" xsi:type="string">input</item>
-                    <item name="source" xsi:type="string">user_data_form</item>
+                    <item name="source" xsi:type="string">comment_data_form</item>
                     <item name="dataScope" xsi:type="string">phone</item>
                 </item>
             </argument>
@@ -110,7 +178,7 @@
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="formElement" xsi:type="string">radioset</item>
                     <item name="label" xsi:type="string" translate="true">Gender</item>
-                    <item name="source" xsi:type="string">user_data_form</item>
+                    <item name="source" xsi:type="string">comment_data_form</item>
                 </item>
             </argument>
         </field>
@@ -207,6 +275,8 @@
                 </item>
             </argument>
         </field>
+
+        
 
         
             

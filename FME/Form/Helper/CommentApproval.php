@@ -50,7 +50,7 @@ class CommentApproval extends ProductController implements HttpPostActionInterfa
                         ->save();
                 } catch (\Exception $e) {
                     $this->reviewSession->setFormData($data);
-                    $this->messageManager->addErrorMessage(__('We can\'t post your review right now.'));
+                    $this->messageManager->addErrorMessage(__('We can\'t post your comment right now.'));
                 }
             }
         }

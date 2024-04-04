@@ -5,7 +5,7 @@
 
          <section id="configuration" translate="label" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
             <class>separator-top</class>
-            <label>Enable/Disable Module</label>
+            <label>Configuration</label>
             <tab>fmeextensions</tab>
             <resource>FME_Form::configuration</resource>
 
@@ -16,16 +16,16 @@
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                   </field>
             </group>
-         </section>
 
+            <group id="guestFormValidation" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                  <label>Guest Form Configuration</label>
+                  <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Enable Guest Form</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                  </field>
+            </group>
 
-         <section id="labelConfiguration" translate="label" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
-            <class>separator-top</class>
-            <label>Set Labels</label>
-            <tab>fmeextensions</tab>
-            <resource>FME_Form::labelConfiguration</resource>
-
-            <group id="Label" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="0" showInStore="0">
+            <group id="label" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="0" showInStore="0">
                   <label>Label</label>
 
                   <field id="commentLabel" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
@@ -43,6 +43,47 @@
                      <comment>This text will display on the frontend user account form link title.</comment>
                   </field>
             </group>
+
+            <group id="email" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="0" showInStore="0">
+                  <label>Email ID Configuration</label>
+
+                  <field id="senderName" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                     <label>Set Sender Name</label>
+                     <comment>This name will be used as sender-name for emails.</comment>
+                  </field>
+
+                  <field id="senderEmail" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                     <label>Set Sender Email</label>
+                     <comment>This email will be used as sender-email id for emails.</comment>
+                  </field>
+
+                  <field id="adminName" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                     <label>Set Admin Name</label>
+                     <comment>This name will be used as sender-name for emails.</comment>
+                  </field>
+  
+                  <field id="adminEmail" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                     <label>Set Admin Email</label>
+                     <comment>This email will be used as admin-email id for emails.</comment>
+                  </field>
+            </group>
+
+             <group id="templates" translate="label" type="text" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Email Templates</label>
+
+               <field id="contact_email_admin_template" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                 <label>Admin Email Template</label>
+                 <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+               </field>
+            
+               <field id="contact_email_user_template" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                 <label>Customer Email Template</label>
+                 <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+               </field>
+
+            </group>
+
          </section>
+
       </system>
 </config>

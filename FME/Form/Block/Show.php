@@ -105,6 +105,8 @@ class Show extends Template
         $collection->addFieldToFilter('session_id', $this->customerSession->getCustomer()->getId());
         $collection->setPageSize($pageSize);
         $collection->setCurPage($page);
+        $collection->addFieldToFilter('product_id', ['null' => true]);
+        $collection->setOrder('created_at', 'DESC');
         return $collection;    
     }
 }

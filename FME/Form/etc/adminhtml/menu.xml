@@ -32,18 +32,11 @@
             parent="FME_Extensions::fmeextensions"
             resource="FME_XYZ::base"/>
 
-            <add id="FME_Form::submenu_module_onof"
-                title="Enable/Disable Module" translate="title" module="FME_Form"
+            <add id="FME_Form::submenu_configuration"
+                title="Module Configuration" translate="title" module="FME_Form"
                 sortOrder="20" parent="FME_Form::configuration"
                 action="admin/system_config/edit/section/configuration/"
-                resource="FME_Form::submenu_module_onof"
-                />
-
-            <add id="FME_Form::submenu_module_labelConfiguration"
-                title="Set Labels" translate="title" module="FME_Form"
-                sortOrder="20" parent="FME_Form::configuration"
-                action="admin/system_config/edit/section/labelConfiguration/"
-                resource="FME_Form::submenu_module_labelConfiguration"
+                resource="FME_Form::submenu_configuration"
                 />
 
    </menu>

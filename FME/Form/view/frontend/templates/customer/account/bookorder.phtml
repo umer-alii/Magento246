@@ -86,6 +86,8 @@ $countries = $block->getCountries();
 
         <div class="field gender">
             <label class="label" for="gender"><span><?= $block->escapeHtml(__('Gender')) ?></span></label>
+            <br>
+            <label>
             <div class="control">
                 <input name="gender"
                        id="male"
@@ -93,19 +95,23 @@ $countries = $block->getCountries();
                        value="Male"
                        class="input-text"
                        type="radio" />
-                       <label class="label" for="gender"><span><?= $block->escapeHtml(__('Male')) ?></span></label>
+                       <span><?= $block->escapeHtml(__('Male')) ?></span></label>
+
+                <label>
                 <input name="gender"
                        id="female"
                        title="<?= $block->escapeHtmlAttr(__('Female')) ?>"
                        value="Female"
                        class="input-text"
                        type="radio" />
-                       <label class="label" for="gender"><span><?= $block->escapeHtml(__('Female')) ?></span></label>
+                       <span><?= $block->escapeHtml(__('Female')) ?></span></label>
             </div>
         </div>
 
         <div class="field course">
             <label class="label" for="course"><span><?= $block->escapeHtml(__('Course Books')) ?></span></label>
+            <BR>
+            <label>
             <div class="control">
                 <input name="courses[]"
                        id="course1"
@@ -113,31 +119,34 @@ $countries = $block->getCountries();
                        value="Math"
                        class="input-text"
                        type="checkbox" />
-                       <label class="label" for="course"><span><?= $block->escapeHtml(__('Math')) ?></span></label>
+                       <span><?= $block->escapeHtml(__('Math')) ?></span></label>
                        
+                <label>       
                 <input name="courses[]"
                        id="course2"
                        title="<?= $block->escapeHtmlAttr(__('Science')) ?>"
                        value="Science"
                        class="input-text"
                        type="checkbox" />
-                       <label class="label" for="course"><span><?= $block->escapeHtml(__('Science')) ?></span></label>
-                
-               <input name="courses[]"
+                       <span><?= $block->escapeHtml(__('Science')) ?></span></label>
+                 
+               
+               <label><input name="courses[]"
                        id="course3"
                        title="<?= $block->escapeHtmlAttr(__('History')) ?>"
                        value="History"
                        class="input-text"
                        type="checkbox" />
-                       <label class="label" for="course"><span><?= $block->escapeHtml(__('History')) ?></span></label>
-
+                       <span><?= $block->escapeHtml(__('History')) ?></span></label>
+                
+                <label>
                 <input name="courses[]"
                        id="course4"
                        title="<?= $block->escapeHtmlAttr(__('CS')) ?>"
                        value="CS"
                        class="input-text"
                        type="checkbox" />
-                       <label class="label" for="course"><span><?= $block->escapeHtml(__('CS')) ?></span></label>
+                       <span><?= $block->escapeHtml(__('CS')) ?></span></label>
                
             </div>
         </div>
@@ -212,3 +221,12 @@ $countries = $block->getCountries();
 
 </body>
 </html>
+
+<script>
+const inputDate = document.getElementById("birthdate");
+inputDate.addEventListener("focus",function (evt) {
+  if (this.getAttribute("type")==="date") {
+    this.showPicker();
+  }
+});
+</script>

@@ -29,7 +29,7 @@ class MassApproval extends Action
     public function execute()
     {
         try {
-            $collection = $this->filter->getCollection($this->collection);
+            $collection = $this->filter->getCollection($this->collection)->addFieldToFilter('product_id', ['notnull' => true]);
             
             $collectionSize = $collection->getSize();
             foreach ($collection as $model) {

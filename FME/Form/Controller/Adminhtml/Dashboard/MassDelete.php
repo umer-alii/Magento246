@@ -12,10 +12,15 @@ use FME\Form\Model\ResourceModel\Extension\CollectionFactory;
 class MassDelete extends \Magento\Backend\App\Action
 {
     /**
+     * @const COMMENT_PATH
+     */
+    const COMMENT_PATH = '/reviewApproval';
+
+    /**
      * @var Filter
      */
     protected $filter;
-
+    
     /**
      * @var CollectionFactory
      */
@@ -42,7 +47,13 @@ class MassDelete extends \Magento\Backend\App\Action
      */
     public function execute()
     {
-        $collection = $this->filter->getCollection($this->collectionFactory->create());
+        $referrerUrl = $this->_redirect->getRefererUrl();
+
+        if (strpos($referrerUrl, self::COMMENT_PATH) !== false){
+            $collection = $this->filter->getCollection($this->collectionFactory->create())->addFieldToFilter('product_id', ['notnull' => true]);
+        }else{
+            $collection = $this->filter->getCollection($this->collectionFactory->create())->addFieldToFilter('product_id', ['null' => true]);
+        }
         
         $collectionSize = $collection->getSize();
         
@@ -51,8 +62,14 @@ class MassDelete extends \Magento\Backend\App\Action
         }
 
         $this->messageManager->addSuccess(__('A total of %1 record(s) have been deleted.', $collectionSize));
-
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-        return $resultRedirect->setPath('*/*/');
+
+        if (strpos($referrerUrl, self::COMMENT_PATH) !== false){
+            return $resultRedirect->setPath('*/*/reviewapproval');        
+        }else{
+            return $resultRedirect->setPath('*/*/');
+        }
+        
+        
     }
 }

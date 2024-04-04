@@ -56,25 +56,35 @@ class SaveProductDetails extends Action
     {   
         try {  
             $data = $this->getRequest()->getPostValue();
-            if (isset($data)) {
-                $subjectNames = $this->getRequest()->getPost('courses', []);
-                $data['subjects'] = implode(',', $subjectNames);
-                unset($data['courses']);
+            // if ($this->customerSession->isLoggedIn()) {
+                if (isset($data)) {
 
-                $professionNames = $this->getRequest()->getParam('profession',[]);     
-                $data['profession'] = implode(',', $professionNames);
+                    // dd($this->getRequest()->getPost('product_name'));
+                    $subjectNames = $this->getRequest()->getPost('courses', []);
+                    $data['subjects'] = implode(',', $subjectNames);
+                    unset($data['courses']);
 
-                $data['session_id'] = $this->customerSession->getCustomer()->getId();
+                    $professionNames = $this->getRequest()->getParam('profession',[]);     
+                    $data['profession'] = implode(',', $professionNames);
 
-                $data['status'] = 'Pending';
-                
-                $model = $this->model->setData($data);
-                $this->model->save(); 
-                
-                $this->messageManager->addSuccessMessage(__("Your review is received successfully"));
+                    $data['session_id'] = $this->customerSession->getCustomer()->getId();
+
+                    $data['status'] = 'Pending';
+                    
+                    $model = $this->model->setData($data);
+                    $this->model->save(); 
+                    
+                    $this->messageManager->addSuccessMessage(__("Your review is received successfully"));
+                }
             }
-        } catch (\Exception $e) {
-            dd($e);
+            // else{
+            //     $this->messageManager->addNotice(__("Please Login First"));
+            //     $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
+            //     $resultRedirect->setUrl('/customer/account/login/');
+            //     return $resultRedirect;
+            // }
+        catch (\Exception $e) {
+            // dd($e);
             $this->messageManager->addNotice(__("Fill the required fields"));
             $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
             $resultRedirect->setUrl($this->_redirect->getRefererUrl());

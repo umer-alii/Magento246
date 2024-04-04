@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<configuration>
+			<templates>
+				<contact_email_admin_template>configuration_templates_contact_email_admin_template</contact_email_admin_template>
+				<contact_email_user_template>configuration_templates_contact_email_user_template</contact_email_user_template>
+			</templates>
+		</configuration>
+	</default>
+</config>

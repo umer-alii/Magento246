@@ -3,6 +3,7 @@
 namespace FME\Form\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
+use FME\Form\Helper\GetEmails;
  
 /**
  * Observer class for sending mail to admin when a customer submits a form
@@ -10,10 +11,10 @@ use Magento\Framework\Event\ObserverInterface;
 class SendMailToAdmin implements ObserverInterface
 {
     /**
-     * Email recipient configuration path
+     * @var \FME\Form\Helper\GetEmails
      */
-    const XML_PATH_EMAIL_RECIPIENT = 'trans_email/ident_general/email';
-    
+    protected $email;
+
     /**
      * @var \Magento\Framework\Mail\Template\TransportBuilder
      */
@@ -47,19 +48,22 @@ class SendMailToAdmin implements ObserverInterface
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @param \Magento\Framework\Escaper $escaper
+     * @param \FME\Form\Helper\GetEmails $email
      */
     public function __construct(
         \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder,
         \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Framework\Escaper $escaper
+        \Magento\Framework\Escaper $escaper,
+        GetEmails $email
     ) {
         $this->_transportBuilder = $transportBuilder;
         $this->inlineTranslation = $inlineTranslation;
         $this->scopeConfig = $scopeConfig;
         $this->storeManager = $storeManager;
         $this->_escaper = $escaper;
+        $this->email = $email;
     }
  
     /**
@@ -70,8 +74,8 @@ class SendMailToAdmin implements ObserverInterface
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
+        // dd($this->email->getAdminEmailTemplate());
         $customer = $observer->getData('customer');
-        
         $this->inlineTranslation->suspend();
         try
         {
@@ -92,12 +96,13 @@ class SendMailToAdmin implements ObserverInterface
 
             $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
             
+           
             $transport = $this->_transportBuilder
-                ->setTemplateIdentifier('contact_email_admin_template') 
+                ->setTemplateIdentifier($this->email->getAdminEmailTemplate()) 
                 ->setTemplateOptions(['area' => \Magento\Framework\App\Area::AREA_FRONTEND, 'store' => \Magento\Store\Model\Store::DEFAULT_STORE_ID])
                 ->setTemplateVars(['data' => $postObject])
-                ->setFrom(['name' => $customer['name'], 'email' => $customer['email']])
-                ->addTo('umer.ali@unitedsol.net')
+                ->setFrom(['name' => $this->email->getSenderName(), 'email' => $this->email->getSenderEmail()])
+                ->addTo($this->email->getAdminEmail())
                 ->getTransport();
 
             $transport->sendMessage();

@@ -3,9 +3,26 @@
     $countries = $block->getCountries();
     $currentProductId = $block->getCurrentProductId();
     $currentProductName = $block->getCurrentProductName();
+    $currentProductSku = $block->getCurrentProductSku();
     $loggedInUser = $block->getLoggedUserDetails();
+    $comments = array_reverse($block->getComments());
 ?>
-<?php if (count($data)): ?>
+
+<script type="text/javascript">
+    require(['jquery'], function($) {
+        $(document).ready(function() {
+            $('#scrollButton').on('click', function() {
+                // Scroll to the target element
+                $('html, body').animate({
+                    scrollTop: $('#comment-form').offset().top
+                }, 1000); // Adjust scroll speed if needed
+            });
+        });
+    });
+</script>
+
+<button id="scrollButton" class="action submit primary" style="float: right; margin-top:-5px;">Scroll to Form</button>
+<?php if (count($comments)): ?>
     <div class="block review-list" id="customer-reviews">
         <?php if (!$block->getHideTitle()): ?>
             <div class="block-title">
@@ -17,8 +34,7 @@
                 <?= $block->getChildHtml('toolbar') ?>
             </div>
             <ol class="items review-items">
-                <?php foreach ($data as $_review): ?>
-                    <?php if (isset($_review['product_id']) && ($_review['product_id'] == $currentProductId) && $_review['admin_approval'] == 1): ?>
+                <?php foreach ($comments as $_review): ?>
                         <li class="item review-item" itemscope itemprop="review" itemtype="http://schema.org/Review">
                             
                        
@@ -48,28 +64,30 @@
                                     </p>       
                             </div>
 
-                    <?php endif; ?>  
-                <?php endforeach; ?>
-                
+                    <?php endforeach; ?>  
             </ol>
             <div class="toolbar review-toolbar">
                 <?= $block->getChildHtml('toolbar') ?>
             </div>
+            </div>
         </div>
-    </div>
-<?php endif; ?>
-<?php if (!(isset($_review['product_id']) && ($_review['product_id'] == $currentProductId) && $_review['admin_approval'] == 1)): ?>
-                    <span class="review-title">
-                        <?= $escaper->escapeHtml(__('No Comments Found...')) ?>
-                    </span>
+    <?php endif; ?>
+    <?php if (empty($comments)): ?>
+        <span class="review-title">
+            <?= $escaper->escapeHtml(__('No Comments Found...')) ?>
+        </span>
+        <br><hr><br>
+    <?php endif; ?>
 
-                    <br><hr><br>
-                    <?php endif; ?>
 
-<form action="<?= $block->getUrl('orderbook/customer/saveproductdetails') ?>" method="POST">
+<form action="<?= $block->getUrl('orderbook/customer/saveproductdetails') ?>" id="comment-form" method="POST">
+
     <fieldset class="fieldset">
+    <legend class="review-form review-fieldset legend review-legend"><span><?= $block->escapeHtml(__("You're reviewing:")) ?></span><strong><?= $currentProductName; ?></strong></legend><br/>
 
-        <div class="field name required">
+    <label>cucumber<INPUT TYPE="checkbox" NAME="input" VALUE="wrong"><BR></label>
+
+        <div class="field name required" id="namefield">
             <label class="label" for="name"><span><?= $block->escapeHtml(__('Name')) ?></span></label>
             <div class="control">
                 <input name="name"
@@ -123,7 +141,7 @@
         </div>
 
         <div class="field birthdate required">
-            <label class="label" for="birthdate"><span><?= $block->escapeHtml(__('Select Your Birthdate:')) ?></span></label>
+            <label><span><?= $block->escapeHtml(__('Select Your Birthdate:')) ?></span>
             <div class="control">
                 <input name="birthdate"
                        id="birthdate"
@@ -132,10 +150,12 @@
                        class="input-text"
                        type="date"/>
             </div>
-        </div>
+        </div></label>
 
         <div class="field gender">
             <label class="label" for="gender"><span><?= $block->escapeHtml(__('Gender')) ?></span></label>
+            <br>
+            <label>
             <div class="control">
                 <input name="gender"
                        id="male"
@@ -143,19 +163,23 @@
                        value="Male"
                        class="input-text"
                        type="radio" />
-                       <label class="label" for="gender"><span><?= $block->escapeHtml(__('Male')) ?></span></label>
+                       <span><?= $block->escapeHtml(__('Male')) ?></span></label>
+
+                <label>
                 <input name="gender"
                        id="female"
                        title="<?= $block->escapeHtmlAttr(__('Female')) ?>"
                        value="Female"
                        class="input-text"
                        type="radio" />
-                       <label class="label" for="gender"><span><?= $block->escapeHtml(__('Female')) ?></span></label>
+                       <span><?= $block->escapeHtml(__('Female')) ?></span></label>
             </div>
         </div>
 
         <div class="field course">
             <label class="label" for="course"><span><?= $block->escapeHtml(__('Course Books')) ?></span></label>
+            <BR>
+            <label>
             <div class="control">
                 <input name="courses[]"
                        id="course1"
@@ -163,31 +187,34 @@
                        value="Math"
                        class="input-text"
                        type="checkbox" />
-                       <label class="label" for="course"><span><?= $block->escapeHtml(__('Math')) ?></span></label>
+                       <span><?= $block->escapeHtml(__('Math')) ?></span></label>
                        
+                <label>       
                 <input name="courses[]"
                        id="course2"
                        title="<?= $block->escapeHtmlAttr(__('Science')) ?>"
                        value="Science"
                        class="input-text"
                        type="checkbox" />
-                       <label class="label" for="course"><span><?= $block->escapeHtml(__('Science')) ?></span></label>
-                
-               <input name="courses[]"
+                       <span><?= $block->escapeHtml(__('Science')) ?></span></label>
+                 
+               
+               <label><input name="courses[]"
                        id="course3"
                        title="<?= $block->escapeHtmlAttr(__('History')) ?>"
                        value="History"
                        class="input-text"
                        type="checkbox" />
-                       <label class="label" for="course"><span><?= $block->escapeHtml(__('History')) ?></span></label>
-
+                       <span><?= $block->escapeHtml(__('History')) ?></span></label>
+                
+                <label>
                 <input name="courses[]"
                        id="course4"
                        title="<?= $block->escapeHtmlAttr(__('CS')) ?>"
                        value="CS"
                        class="input-text"
                        type="checkbox" />
-                       <label class="label" for="course"><span><?= $block->escapeHtml(__('CS')) ?></span></label>
+                       <span><?= $block->escapeHtml(__('CS')) ?></span></label>
                
             </div>
         </div>
@@ -258,6 +285,32 @@
             </div>
         </div>
 
+        <div class="field product_name">
+            <div class="control">
+                <input name="product_name"
+                       id="product_name"
+                       title="<?= $block->escapeHtmlAttr(__('product_name')) ?>"
+                       class="input-text"
+                       value = <?= $currentProductName ?>
+                       type="hidden"
+                       data-validate="{required:true}"
+                />
+            </div>
+        </div>
+
+        <div class="field product_sku">
+            <div class="control">
+                <input name="product_sku"
+                       id="product_sku"
+                       title="<?= $block->escapeHtmlAttr(__('product_sku')) ?>"
+                       class="input-text"
+                       value = <?=  $currentProductSku ?>
+                       type="hidden"
+                       data-validate="{required:true}"
+                />
+            </div>
+        </div>
+ 
         <?= $block->getChildHtml('form.additional.info') ?>
     </fieldset>
     <div class="actions-toolbar">
@@ -271,3 +324,12 @@
 
 
 </form>
+
+<script>
+    const inputDate = document.getElementById("birthdate");
+    inputDate.addEventListener("focus",function (evt) {
+    if (this.getAttribute("type")==="date") {
+        this.showPicker();
+    }
+    });
+</script>

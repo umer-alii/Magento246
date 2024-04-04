@@ -144,9 +144,42 @@ class getUserDetails extends Template
      *
      * @return string|null
      */
+
+    public function getComments(){
+        $comments = $this->collectionObject->create()
+        ->addFieldToFilter('product_id', $this->getCurrentProductId())
+        ->addFieldToFilter('admin_approval', '1')
+        ->addOrder('created_at', 'DESC')
+        ->getData();
+        
+        return array_reverse($comments);
+    }
+
     public function getCurrentProductName()
     {
         $currentProduct = $this->getCurrentProduct();
         return $currentProduct ? $currentProduct->getName() : null;
+    }
+
+    public function getCurrentProductSku()
+    {
+        $currentProduct = $this->getCurrentProduct();
+        return $currentProduct ? $currentProduct->getSku(): null;
+    }
+
+    public function getCurrentCustomerId(){
+        $customerId = $this->customerSession->create()->getCustomerId();
+        return $customerId;
+    }
+
+    public function checkCommentExist($productId, $customerId){
+        $check = false;
+        $data = $this->collectionObject->create()->addFieldToFilter('product_id', $productId)->getCollection();
+        foreach($data['customer_id'] as $id){
+            if($id = $customerId){
+                $check = true;
+            }
+        }
+        return $check;
     }
 }

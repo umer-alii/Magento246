@@ -14,6 +14,8 @@
         <column xsi:type="date" name="birthdate" nullable="false" comment="Birthdate" />
         <column xsi:type="varchar" name="country"  nullable="false" comment="Country"/>
         <column xsi:type="varchar" name="comments"  nullable="false" comment="Comments"/>
+        <column xsi:type="varchar" name="product_name" nullable="true" comment="Product Name"/>
+        <column xsi:type="varchar" name="product_sku" nullable="true" comment="Product Sku"/>
         <column xsi:type="int" name="product_id"  padding="10" unsigned="true" nullable="true" comment="Product Id"/>
         <column xsi:type="int" name="admin_approval"  padding="10" unsigned="true" nullable="true" comment="Admin Approval"/>
         <column xsi:type="varchar" name="status"  nullable="false" comment="Comment Status"/>

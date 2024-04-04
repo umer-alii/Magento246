@@ -7,9 +7,9 @@ namespace FME\Form\Helper;
  */
 class Labels extends \Magento\Framework\App\Helper\AbstractHelper {   
 
-    const COMMENT_LABEL = 'labelConfiguration/Label/commentLabel';
-    const GUEST_FORM_LABEL = 'labelConfiguration/Label/guestFormLabel';
-    const LOGGEDIN_USER_FORM_LABEL= 'labelConfiguration/Label/userFormLabel';
+    const COMMENT_LABEL = 'configuration/label/commentLabel';
+    const GUEST_FORM_LABEL = 'configuration/label/guestFormLabel';
+    const LOGGEDIN_USER_FORM_LABEL= 'configuration/label/userFormLabel';
 
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface

@@ -12,6 +12,7 @@ class Approvals extends Column
 
     protected const URL_PATH_APPROVE = 'customroute/dashboard/approvecomment';
     protected const URL_PATH_REJECT = 'customroute/dashboard/refusecomment';
+    protected const URL_PATH_EDIT = 'customroute/dashboard/editcomment';
 
     protected $urlBuilder;
     protected $_escaper;
@@ -49,7 +50,7 @@ class Approvals extends Column
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as &$item) {
 
-                if (isset($item['entity_id'])) {                    //&& $item['status'] != 'Refused'
+                if (isset($item['entity_id'])) {                    
                     if (isset($item['entity_id'])) {
                         $item[$this->getData('name')] = [
                             'approve' => [
@@ -77,6 +78,15 @@ class Approvals extends Column
                                     'title' => __('Reject Comment ?'),
                                     'message' => __('Are you sure you wan\'t to reject this comment?'),
                                 ],
+                            ],
+                            'edit' => [
+                                'href' => $this->urlBuilder->getUrl(
+                                    static::URL_PATH_EDIT,
+                                    [
+                                        'entity_id' => $item['entity_id'],
+                                    ]
+                                ),
+                                'label' => __('Edit.')
                             ],
                         ];
                     }
