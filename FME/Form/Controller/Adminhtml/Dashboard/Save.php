@@ -11,6 +11,10 @@ use \Magento\Framework\Controller\ResultFactory;
 class Save extends \Magento\Backend\App\Action
 {
     /**
+     * @const COMMENT_PATH
+     */
+    const COMMENT_PATH = '/editcomment';
+    /**
      * @var Model
      */
     protected $model;
@@ -39,6 +43,7 @@ class Save extends \Magento\Backend\App\Action
      */
     public function execute()
     {
+        
         try {
             $data = $this->getRequest()->getPostValue();
             $id = $this->getRequest()->getParam("product_id");
@@ -67,15 +72,22 @@ class Save extends \Magento\Backend\App\Action
                 $this->messageManager->addSuccessMessage(__("Data Added Successfully.")); 
             }
         } catch (\Exception $e) {
-            dd($e);
             $this->messageManager->addNotice(__("Fill the required fields"));
             $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
             $resultRedirect->setUrl($this->_redirect->getRefererUrl());
             return $resultRedirect;
         }
     
+    $referrerUrl = $this->_redirect->getRefererUrl();
+
+    
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-        $resultRedirect->setUrl($this->_url->getUrl('customroute/dashboard/index'));
+        if (strpos($referrerUrl, self::COMMENT_PATH) !== false){
+            $resultRedirect->setUrl($this->_url->getUrl('customroute/dashboard/reviewApproval'));
+        }else{
+            $resultRedirect->setUrl($this->_url->getUrl('customroute/dashboard/index'));
+        }
+        
         return $resultRedirect;
     }
 }

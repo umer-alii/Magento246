@@ -12,6 +12,7 @@ class GetEmails extends \Magento\Framework\App\Helper\AbstractHelper {
     const ADMIN_EMAIL = 'configuration/email/senderEmail';
     const SENDER_EMAIL = 'configuration/email/adminEmail';
     const ADMIN_EMAIL_TEMPLATE = 'configuration/templates/contact_email_admin_template';
+    // const ADMIN_EMAIL_TEMPLATE_2 = 'configuration/templates/contact_email_admin_template2';
     const USER_EMAIL_TEMPLATE = 'configuration/templates/contact_email_user_template';
 
     /**
@@ -84,6 +85,8 @@ class GetEmails extends \Magento\Framework\App\Helper\AbstractHelper {
      * @return string|null The admin email tempalte or null if not found
      */
     public function getAdminEmailTemplate() {
+        // $email_temp = [];
+        // $email_temp.push($this->scopeConfig->getValue(self::ADMIN_EMAIL_TEMPLATE));
         return $this->scopeConfig->getValue(self::ADMIN_EMAIL_TEMPLATE);
     }
 

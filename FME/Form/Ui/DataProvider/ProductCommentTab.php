@@ -3,7 +3,7 @@
 namespace FME\Form\Ui\DataProvider;
 
 use Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\AbstractModifier;
-use Magento\Framework\View\LayoutFactory; // Import LayoutFactory
+use Magento\Framework\View\LayoutFactory;
 
 class ProductCommentTab extends AbstractModifier
 {

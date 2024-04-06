@@ -25,7 +25,11 @@ class MassRefusal extends Action
             parent::__construct($context);
             $this->resultRedirectFactory = $resultFactory;
     }
-
+    /**
+     * Execute action to mass refusal a comment
+     *
+     * @return \Magento\Framework\Controller\Result\Redirect
+     */
     public function execute()
     {
         try {

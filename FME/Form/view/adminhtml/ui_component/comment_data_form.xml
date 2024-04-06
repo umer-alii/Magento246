@@ -4,7 +4,7 @@
         <item name="js_config" xsi:type="array">
             <item name="provider" xsi:type="string">comment_data_form.comment_data_form_data_source</item>
         </item>
-        <item name="label" xsi:type="string" translate="true"> Edit Comment Details </item>
+        <item name="label" xsi:type="string" translate="true"> Comment Form </item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
 
     </argument>
@@ -98,9 +98,9 @@
             </settings>
         </field>
 
-         <field name="status" formElement="select" >
+         <!-- <field name="status" formElement="select" >
             <argument name="data" xsi:type="array">
-                <item name="options" xsi:type="object">FME\Form\Model\Config\Source\ReviewStatus</item>
+                <item name="options" xsi:type="object">FME\Form\Model\Config\Source\CommentStatus</item>
                     <item name="config" xsi:type="array">
                         <item name="label" xsi:type="string">Review Status</item>
                         <item name="visible" xsi:type="boolean">true</item>
@@ -110,7 +110,7 @@
                         <item name="source" xsi:type="string">contact</item>
                     </item>
                 </argument>
-            </field>
+            </field> -->
 
         <field name="name">
             <argument name="data" xsi:type="array">
@@ -275,18 +275,6 @@
                 </item>
             </argument>
         </field>
-
-        
-
-        
-            
-        <!-- <field name="courses" class="FME\Form\view\adminhtml\UI\Component\Courses">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="label" xsi:type="string">Courses</item>
-                </item>
-            </argument>
-        </field> -->         
 
     </fieldset>
 </form>

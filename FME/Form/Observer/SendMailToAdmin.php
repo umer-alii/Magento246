@@ -88,7 +88,8 @@ class SendMailToAdmin implements ObserverInterface
                 'address' => $customer['address'],
                 'phone' => $customer['phone'],
                 'date' => $customer['birthdate'],
-                'subjects' => $customer['subjects']
+                'subjects' => $customer['subjects'],
+                'comments' => $customer['comments']
             ];
 
             $postObject = new \Magento\Framework\DataObject();

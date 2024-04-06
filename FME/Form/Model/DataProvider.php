@@ -58,7 +58,8 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         }
         
         $items = $this->collection->getItems();
-        foreach ($items as $item) {
+        // dd($items);
+        foreach ($items as $item) {           
             $this->loadedData[$item->getId()] = $item->getData();
         }
         

@@ -84,7 +84,6 @@ class SaveProductDetails extends Action
             //     return $resultRedirect;
             // }
         catch (\Exception $e) {
-            // dd($e);
             $this->messageManager->addNotice(__("Fill the required fields"));
             $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
             $resultRedirect->setUrl($this->_redirect->getRefererUrl());

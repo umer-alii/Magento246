@@ -37,7 +37,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
         $this->setDefaultSort('created_at');
         $this->setDefaultDir('DESC');
         $this->setSaveParametersInSession(true);
-        $this->setUseAjax(false);
+        $this->setUseAjax(true);
         $this->setVarNameFilter('post_filter');
     }
 
@@ -46,7 +46,9 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
      */
     protected function _prepareCollection()
     {
-        /** @var \FME\Form\Model\ResourceModel\Extension\Collection $collection */
+        /** 
+         * @var \FME\Form\Model\ResourceModel\Extension\Collection $collection 
+         */
         $collection = $this->collectionFactory->create();
 
         // Filter out records where product_id is not null

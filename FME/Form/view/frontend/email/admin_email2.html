@@ -1,0 +1,52 @@
+<!--@subject {{trans "Contact Form Details"}} @-->
+<!--@vars {
+    "store url=\"\"":"Store Url",
+    "skin url=\"images/logo_email.gif\" _area='frontend'":"Email Logo Image",
+    "var data.email":"Sender Email",
+    "var data.name":"Sender Name",
+    "var data.phone":"Sender Phone",
+    "var data.gender":"Sender Gender",
+    "var data.address":"Sender Address",
+    "var data.subjects":"Sender Subjects",
+    "var data.date":"Sender Date",
+    "var data.comment":"Sender Comments"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<table class="message-details">
+    <tr>
+        <td><strong>{{trans "Name"}}</strong></td>
+        <td>{{var data.name}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Email"}}</strong></td>
+        <td>{{var data.email}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Gender"}}</strong></td>
+        <td>{{var data.gender}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Phone"}}</strong></td>
+        <td>{{var data.phone}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Address"}}</strong></td>
+        <td>{{var data.address}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Subjects"}}</strong></td>
+        <td>{{var data.subjects}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Date"}}</strong></td>
+        <td>{{var data.date}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Comment"}}</strong></td>
+        <td>{{var data.comments}}</td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}

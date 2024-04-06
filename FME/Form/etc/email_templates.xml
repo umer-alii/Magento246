@@ -3,5 +3,5 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
     <template id="configuration_templates_contact_email_admin_template" label="Admin Email Template" file="admin_email.html" type="html" module="FME_Form" area="frontend"/>
     <template id="configuration_templates_contact_email_user_template" label="User Email Template" file="user_email.html" type="html" module="FME_Form" area="frontend"/>
-
+    <template id="configuration_templates_contact_email_admin_template_2" label="Admin Email Template With Comment" file="admin_email2.html" type="html" module="FME_Form" area="frontend"/>
 </config>

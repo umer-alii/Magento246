@@ -5,14 +5,14 @@
             <item name="deps" xsi:type="string">review_approval.review_approval_data_source</item>
         </item>
         <item name="spinner" xsi:type="string">spinner_columns</item>
-        <item name="buttons" xsi:type="array">
+        <!-- <item name="buttons" xsi:type="array">
             <item name="add" xsi:type="array">
                 <item name="name" xsi:type="string">back</item>
                 <item name="label" xsi:type="string" translate="true">Back</item>
                 <item name="class" xsi:type="string">secondary</item>
                 <item name="url" xsi:type="string">admin/dashboard/index</item>
             </item>
-        </item>
+        </item> -->
     </argument>
 
     <listingToolbar name="listing_top">

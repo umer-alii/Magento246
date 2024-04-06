@@ -206,17 +206,7 @@
                     <item name="dataScope" xsi:type="string">comments</item>
                 </item>
             </argument>
-        </field>
-
-        
-            
-        <!-- <field name="courses" class="FME\Form\view\adminhtml\UI\Component\Courses">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="label" xsi:type="string">Courses</item>
-                </item>
-            </argument>
-        </field> -->         
+        </field>       
 
     </fieldset>
 </form>

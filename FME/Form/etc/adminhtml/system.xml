@@ -10,7 +10,7 @@
             <resource>FME_Form::configuration</resource>
 
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
-                  <label>Configuration</label>
+                  <label>Module Configuration</label>
                   <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
                         <label>Enable Module</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -80,7 +80,6 @@
                  <label>Customer Email Template</label>
                  <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
                </field>
-
             </group>
 
          </section>

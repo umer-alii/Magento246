@@ -140,7 +140,7 @@ class getUserDetails extends Template
     }
 
     /**
-     * Get the name of the current product
+     * Get the comments of the current product
      *
      * @return string|null
      */
@@ -155,11 +155,23 @@ class getUserDetails extends Template
         return array_reverse($comments);
     }
 
+    /**
+     * Get the name of the current product
+     *
+     * @return string|null
+     */
+
     public function getCurrentProductName()
     {
         $currentProduct = $this->getCurrentProduct();
         return $currentProduct ? $currentProduct->getName() : null;
     }
+
+    /**
+     * Get the sku of the current product
+     *
+     * @return string|null
+     */
 
     public function getCurrentProductSku()
     {
@@ -167,10 +179,22 @@ class getUserDetails extends Template
         return $currentProduct ? $currentProduct->getSku(): null;
     }
 
+    /**
+     * Get the customerID of the current product
+     *
+     * @return string|null
+     */
+
     public function getCurrentCustomerId(){
         $customerId = $this->customerSession->create()->getCustomerId();
         return $customerId;
     }
+
+    /**
+     * Check comment exist or not
+     *
+     * @return string|null
+     */
 
     public function checkCommentExist($productId, $customerId){
         $check = false;
